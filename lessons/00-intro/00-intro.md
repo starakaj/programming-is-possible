@@ -1,7 +1,5 @@
 # Intro: Programming is the Art of the Possible
 
-## Class Title
-
 ## Authors
 Sam Tarakajian for NYU
 
