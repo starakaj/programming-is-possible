@@ -12,7 +12,9 @@ Sam Tarakajian for NYU
 - What is git?
 
 ## Introduction
-In this class we're going to start diving into Node.js. We're using Node and not Python or some other scripting language mostly because the tools around the software are very mature and widely used. However, the stuff we'll talk about in this class and throughout the course extends to other languages as well. We'll talk about how to run a Node program, how to create a Node package, how to set up a simple server with Node, and how to push the whole thing up to github. In future classes we'll drill down into each of these areas a little more closely.
+In this class we're going to start diving into Node.js. We're using Node and not Python or some other scripting language mostly for the sake of simplicity. However, the stuff we'll talk about in this class and throughout the course extends to other languages as well. In the second half of this class, after the midterm assignment, you never have to use JavaScript again if you don't want to. 
+
+We'll talk about how to run a Node program, how to create a Node package, how to set up a simple server with Node, and how to push the whole thing up to github. In future classes we'll drill down into each of these areas a little more closely.
 
 ### Target Audience / Prerequisite & Pre-Assessment
 Before this class you should have Node installed, preferrably with nvm. On OS X you'll also want to have Developer Tools installed. Windows users should install Git Bash with MinGW. You might also want a coding text editor installed. Sublime Text and Visual Studio Code are both excellent.

@@ -8,7 +8,7 @@ Sam Tarakajian for NYU
 ## Essential Questions
 - What is a protocol? An interface? An encoding?
 - Where do these show up in our everyday lives?
-- Why is it important to learn to program?
+- What does it mean to learn programming?
 
 ## Introduction
 In this introductory class, we'll spend a little time getting to know each other, as well as discussing what this course is all about. There will be an exercise to prime our understanding of the major course themes of interface and representation.
