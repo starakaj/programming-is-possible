@@ -20,10 +20,20 @@ This class is about taking Node out of production and putting it on the Internet
 ### Pacing / Duration
 - 0:10 - Discuss the reading from last week.
 - Create a new Node project
-- Install Handlebars.js
-- Organizing the project to contain JS source files, CSS, and HTML templates.
-- Creating a simple template page and populating it with JS content
-- Putting that page up on Heroku
+- Talk about React
+- We'll be using React here just as a templating engine, which is just the tip of what it can do.
+- Basic idea: we create templates using React, and transpile these to JavaScript before turning them into HTML using react-dom/server
+- mkdir public, mkdir src
+- Install Babel `npm install --save-dev @babel/core@7.1.0 @babel/cli@7.1.0 @babel/preset-env@7.1.0 @babel/preset-react@7.0.0`
+- Create a .babelrc file
+- Install react `npm i react@16.5.2 react-dom@16.5.2`
+- Make a file called `App.jsx` in src
+- Compile it using babel
+- Create a server file to serve the generated content using `renderToStaticMarkup`
+- Split the thing into components
+- Make a component that welcomes the user
+- Make a component that tells the user on what kind of operating system the server is running
+- Now for a fun challenge, make a counter that tells the user how many times they've visited the page.
 
 ## Materials Needed
 What hardware, software, or other materials will students or teachers need for lessons.
