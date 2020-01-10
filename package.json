@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/starakaj/programming-is-possible/issues"
   },
-  "homepage": "https://github.com/starakaj/programming-is-possible#readme"
+  "homepage": "https://github.com/starakaj/programming-is-possible#readme",
+  "workspaces": [
+    "lessons/*"
+  ],
+  "engines": {
+    "node": "12.x",
+    "yarn": "1.19.x"
+  }
 }

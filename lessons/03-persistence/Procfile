@@ -1,1 +1,1 @@
-web: PORT=80 node lessons/03-persistence/src/mongo/app.js
+web: yarn install && PORT=80 node lessons/03-persistence/src/mongo/app.js
