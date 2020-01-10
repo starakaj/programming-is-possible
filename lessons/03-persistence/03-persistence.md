@@ -18,30 +18,40 @@ We've seen how to put a Node server on the Internet. The question is, how does t
 The first two Node classes are prerequisite for this class.
 
 ### Outcomes & Goals
-This can be easily answered by completing these example sentences:
-* In this workshop we will be… (soldering, setting up a RPi home network, making a wearable that communicates with….)
-* Students will walk away with a deeper understanding of…
+* In this workshop we will be looking at how to implement data persistance on a web server. We will store data on a server, and update that data using an API call.
+* Students will walk away with an understanding of how web servers work. They will understand how to implement a basic CRUD—Create, Read, Update, Delete—data store.
 
 ### Pacing / Duration
-Number of total hours the unit will take in a typical workshop session(s). Please try to take into account transition time between instruction and hands on exercises if any prep is necessary.
+This workshop is indended to last about three hours
 
-- Break down of the class schedule example: 
-  - :15 Overview, context, examples and vocabulary 
-  - :20 Instruction & hands on exercise 
-  - :15 Wrap-up discussion & sharing, reflection or journal and next steps
+- Class breakdown
+  - :15 Discussion of last week's reading
+  - :10 Starting from a repo with some basic parts (express)
+  - :10 Implementing a counter using just JSON
+  - :15 Upgrading to a real database
 
 ## Materials Needed
-What hardware, software, or other materials will students or teachers need for lessons.
+- You should have the following installed on your machine:
+    - nvm
+    - git
+    - mongodb
+        - See https://docs.mongodb.com/manual/administration/install-community/ for platform-specific installation instructions
+    - (recommended) mongodb compass https://www.mongodb.com/download-center/compass which you can use to visualze your database
+
 
 ### Exercises To Do Before Class
-What materials (readings, tasks, exercises) should students complete before class to be prepared for the lesson.
+- Introduce yourself to MongoDB concepts
+    - https://docs.mongodb.com/manual/introduction/
+    - https://docs.mongodb.com/manual/core/databases-and-collections/
+    - https://docs.mongodb.com/manual/core/document/
+    - https://docs.mongodb.com/manual/crud/
 
 ### Vocabulary (example)
 * Program: A procedure, or set of instructions, that performs a specific task when executed by a computer. 
 * Programming Language: The human-readable commands and syntax (or grammar rules) used to write programs. 
 
 ## Exercise Descriptions
-Descriptions of each exercise or phase of class. Similar to pacing but with more description of steps.
+Last week we put a web server up on Heroku.
 
 ## Student Reflections, Takeaways & Next Steps
 Additional materials for the students to leave with that can help them dig deeper into the subject or additional exercises and challenges to help students progress their knowledge to the next level and gain mastery of the subject through independent study.
