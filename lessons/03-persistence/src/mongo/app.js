@@ -6,7 +6,11 @@ const port = process.env.PORT || 3000;
 const mongo = require('mongodb').MongoClient;
 
 // Take note, this is because we're connected to a local Mongo
-const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
+let url = process.env.MONGODB_URI || "mongodb://localhost:27017";
+
+// If the MONGODB_URI contains a trailing database, trim it
+// let regexp = /(mongodb:\/\/.*)(\/.+)/g;
+// url = url.replace(regexp, "$1");
 
 const app = express();
 let db;
@@ -46,7 +50,7 @@ mongo.connect(url, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then((client) => {
-    db = client.db("aporia");
+    db = client.db();
 
     app.listen(port, () => {
         console.log(`Express app listening on port ${port}`);
