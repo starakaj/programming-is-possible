@@ -6,11 +6,7 @@ const port = process.env.PORT || 3000;
 const mongo = require('mongodb').MongoClient;
 
 // Take note, this is because we're connected to a local Mongo
-let url = process.env.MONGODB_URI || "mongodb://localhost:27017";
-
-// If the MONGODB_URI contains a trailing database, trim it
-// let regexp = /(mongodb:\/\/.*)(\/.+)/g;
-// url = url.replace(regexp, "$1");
+let url = process.env.MONGODB_URI || "mongodb://localhost:27017/aporia";
 
 const app = express();
 let db;
