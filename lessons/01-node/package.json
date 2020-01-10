@@ -2,11 +2,11 @@
   "name": "01-node",
   "version": "1.0.0",
   "description": "Lesson 01: An introduction to Node",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node server.js",
-    "info": "node os-info.js"
+    "serve": "node src/server.js",
+    "info": "node src/os-info.js"
   },
   "author": "Sam Tarakajian",
   "license": " CC-BY-SA-4.0",

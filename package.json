@@ -1,5 +1,6 @@
 {
   "name": "programming-is-possible",
+  "private": true,
   "version": "1.0.0",
   "description": "Course materials for the programming is the art of the possible class",
   "main": "index.js",
