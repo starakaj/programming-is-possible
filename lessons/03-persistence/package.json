@@ -2,7 +2,7 @@
   "name": "03-persistence",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/mongo/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,5 +11,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongodb": "^3.4.1"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
