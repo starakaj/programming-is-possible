@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 const mongo = require('mongodb').MongoClient;
 
 // Take note, this is because we're connected to a local Mongo
-const url = "mongodb://localhost:27017";
+const url = process.env.MONGODB_URI || "mongodb://localhost:27017";
 
 const app = express();
 let db;
