@@ -1,0 +1,19 @@
+{
+  "name": "programming-is-possible",
+  "version": "1.0.0",
+  "description": "Course materials for the programming is the art of the possible class",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starakaj/programming-is-possible.git"
+  },
+  "author": "Sam Tarakajian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/starakaj/programming-is-possible/issues"
+  },
+  "homepage": "https://github.com/starakaj/programming-is-possible#readme"
+}
