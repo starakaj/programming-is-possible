@@ -36,6 +36,7 @@ This workshop is indended to last about three hours
     - git
     - mongodb
         - See https://docs.mongodb.com/manual/administration/install-community/ for platform-specific installation instructions
+    - sign up for heroku
     - (recommended) mongodb compass https://www.mongodb.com/download-center/compass which you can use to visualze your database
 
 
@@ -45,13 +46,24 @@ This workshop is indended to last about three hours
     - https://docs.mongodb.com/manual/core/databases-and-collections/
     - https://docs.mongodb.com/manual/core/document/
     - https://docs.mongodb.com/manual/crud/
+- Sign up for Heroku. Seriously, do it.
 
 ### Vocabulary (example)
-* Program: A procedure, or set of instructions, that performs a specific task when executed by a computer. 
-* Programming Language: The human-readable commands and syntax (or grammar rules) used to write programs. 
+* Database
+* Deploy
+* Virtual Machine
 
 ## Exercise Descriptions
-Last week we put a web server up on Heroku.
+
+### Visit counter
+
+Way back in the day, back when the internet was cool, you would go to someone's home page and it would look like this:
+
+![image](img/smocking.jpg)
+
+Beautiful. See, these sites used to have a visitor counter, that would count the number of times someone had visited the page. Let's try to implement something like that, and we'll see that it's not as easy as it seems.
+
+First, copy over the express template from the link I've provided.
 
 ## Student Reflections, Takeaways & Next Steps
 Additional materials for the students to leave with that can help them dig deeper into the subject or additional exercises and challenges to help students progress their knowledge to the next level and gain mastery of the subject through independent study.

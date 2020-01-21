@@ -34,6 +34,7 @@ This class is about taking Node out of production and putting it on the Internet
 - Make a component that welcomes the user
 - Make a component that tells the user on what kind of operating system the server is running
 - Now for a fun challenge, make a counter that tells the user how many times they've visited the page.
+- Put the whole thing up on Heroku
 
 ## Materials Needed
 What hardware, software, or other materials will students or teachers need for lessons.
