@@ -1,71 +1,61 @@
-# About Our Template
-
-Eyebeam's educational focus is to promote artist-led, STEAM based education. This template is intended for our teaching artists to document their lessons with a larger goal for their curriculum to be referenced or used more easily in classrooms, libraries, after school programs or anywhere STEAM programming can be offered. 
-
-This template is based off of NYC Department of Education's CS4All Blueprint to teach creative computing. For more information on the core components they advise teachers and classes focus on, and to give the students the competency to be better prepared to engage with more difficult STEM lessons, I highly encourage you to read about [their approach here](https://blueprint.cs4all.nyc/what-is-cs/).
-
-# TEMPLATE BELOW
-
-## Class Title
+# Natural Language Processing
 
 ## Authors
-Your name (please include collaborators or funding institutions that have supported this work) and links to your site or Github.
+Sam Tarakajian for NYU IDM
+
+@starakaj
 
 ## Essential Questions
-Questions that lead to meaningful exploration of CS concepts and practices. Examples:
-- How can programming represent your ideas and beliefs?
-- How might we use math to express ourselves creatively?
-- How might we use computing to impact our community?
-- What information is my computer sharing about me or my online activity?
+- How does natural language differ from other languages?
+- What kinds of techniques can computers use to recover information from natural language?
+- What kinds of data structures represent the information in natural language?
+- What are ways that we can play with a computer's understanding of language?
+- How do people use NLP for beneficial and not-so-beneficial ends?
 
 ## Introduction
-Please provide a narrative of what the unit is about, and why we should learn it that is simple enough that a student could read and understand. Example: "In this workship we will be using ... to explore ... so that you have a better understanding of how ..."
+Language allows us to encode statements about the world in a way that can be communicated to other entities that share our language. Some languages, like programming languages, have a rigid syntax and encode discrete mechanistic operations. Others, like most human languages, encode meaning more loosely. Interpreting the language is an active process that involves a large number of internalized rules and associations, accumulated over a human lifetime. A major challenge for software developers has been to break down natural language in way that computers can extract information from it, without requiring that the computer have a full, human-like intelligence.
+
+Natural Language Processing refers to a suite of tools for understanding, formatting, and generating language. In this class, we'll survey some of those tools, and see how we can put them to creative use. We'll see the kinds of information that computers can get from natural language, including sentiment, parts-of-speech, and topics. We'll also experiment with generating language for some procedural poetry writing. Overall students should come away with a better understanding of what's possible with NLP, some fun things you can do with it, and maybe a sense of what NLP means for society in general.
 
 ### Target Audience / Prerequisite & Pre-Assessment
-What age range is this exercise designed for and what do students and teachers need to know or be able to do to be successful in the workshop? Any coding languages they should already be comfortable with, any frameworks or tools they should have installed before class.
+This module is part of DM-GY 6063, _Programming is the Art of the Possible_. This is a second semester creative coding course, designed for students who have a strong JavaScript foundation.
 
 ### Outcomes & Goals
-This can be easily answered by completing these example sentences:
-* In this workshop we will be… (soldering, setting up a RPi home network, making a wearable that communicates with….)
-* Students will walk away with a deeper understanding of…
+* In this workshop we will look at different libraries for Natural Language Processing. We'll see how to analyze and generate language using these libraries.
+* Students should come away knowing more about how NLP works. They should understand the approaches that different libraries take for extracting information from language, as well as what assumptions those libraries make.
+* Students should also get a sense of how NLP is being used in a broader social context.
 
 ### Pacing / Duration
-Number of total hours the unit will take in a typical workshop session(s). Please try to take into account transition time between instruction and hands on exercises if any prep is necessary.
-
-- Break down of the class schedule example: 
-  - :15 Overview, context, examples and vocabulary 
-  - :20 Instruction & hands on exercise 
-  - :15 Wrap-up discussion & sharing, reflection or journal and next steps
+TBD
 
 ## Materials Needed
-What hardware, software, or other materials will students or teachers need for lessons.
+TBD but certainly Node.
 
 ### Exercises To Do Before Class
-What materials (readings, tasks, exercises) should students complete before class to be prepared for the lesson.
+TBD. Maybe some reading about esoteric data, sentiment analysis and hedge funds.
 
 ### Vocabulary (example)
-* Program: A procedure, or set of instructions, that performs a specific task when executed by a computer. 
-* Programming Language: The human-readable commands and syntax (or grammar rules) used to write programs. 
+* Language - Any communicable system for encoding and decoding information (wow improve this definition please)
+* Machine Language - Language expressing the serial operation of computer hardware. Maps in a deterministic way to hardware operations and machine states.
+* Natural Language - Language as human beings use it. Continually evolving and constantly reinterpreted (work on this definition).
+* Sentiment - The emotional valence of a language sample.
+* Bag of Words - A histogram representation of language, counting words
+* Syntax - The grammar structure of language
+* Semantics - The meaning structure of language
 
 ## Exercise Descriptions
-Descriptions of each exercise or phase of class. Similar to pacing but with more description of steps.
+TBD
 
 ## Student Reflections, Takeaways & Next Steps
-Additional materials for the students to leave with that can help them dig deeper into the subject or additional exercises and challenges to help students progress their knowledge to the next level and gain mastery of the subject through independent study.
-
-* Multiple Project Exit Points: an idea of high-medium-low projects so students are locked into one end product.
-  * First Steps - a simple exercise
-  * Next Steps - medium exercise
-  * Big Steps - a challenge or open ended study
-* Presentation: how might students share their work? With peers, outside world? What media or platforms could/should be referenced to students to encourage sharing (Instagram, Tumblr...)? 
-* Reflection: reflection questions that ask students to think about CS concepts and practices. How can students express what they’ve learned in some creative way?
+TBD
 
 ## Post Session
+TBD
 
 ### References
-Include any sources cited, but not directly linked in the unit.
+TBD
 
 ### Implementation Guidance & Teaching Reflection  
-e.g. Please provide some guidance based on experience delivering the unit and potential modifications might you are considering making for future iterations of this unit. This is an opportunity for you as the unit author to give teachers practical guidance.
+TBD
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
