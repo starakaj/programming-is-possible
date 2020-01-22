@@ -14,43 +14,43 @@ One semester of JavaScript programming experience is required. Technologies that
 
 This class is DM-GY 6063. I am Sam Tarakajian. You can reach me at st2774@nyu.edu.
 
-### Week 1 — Intro
+### [Week 1 — Intro](lessons/00-intro/00-intro.md)
 We'll spend some time getting to know each other, talking about the course objectives, and the structure of the course. We'll also have discussions about topics related to programming. What is a protocol? What is an interface? What is an encoding? What happens to information as it passes along these channels? We may also do some Node review, to as a warm up.
 
-### Week 2 — Node + Git + Express
+### [Week 2 — Node + Git + Express](lessons/01-node/01-node.md)
 This will be a fairly fast pace class, since most of the early part of the class should be review. We'll talk about how to set up a git repository, how to make commits and synchronize git with a remote. We'll write a simple node server, using express to handle routes. 
 
-### Week 3 — Heroku + React
+### [Week 3 — Heroku + React](lessons/02-heroku/02-heroku.md)
 This week we'll dip our toes into client-side programming, looking at React and at deploying a web interface using React. To get used to the mechanics of React we'll build a project on glitch.com, before using React in our own Node server for server-side rendering. Finally, we'll add a Procfile to deploy the whole thing to Heroku.
 
-### Week 4 — Persistence
+### [Week 4 — Persistence](lessons/03-persistence/03-persistence.md)
 This week we'll return to the backend to add some CRUD to our server. We'll talk about REST and how strongly people feel about it. We'll install MongoDB on our machines and implement a server that can actually hold on to data. Finally, we'll deploy all of that to Heroku for data that persists on a web server.
 
-### Week 5 — Raspberry Pi
+### [Week 5 — Raspberry Pi](lessons/05-raspberry/05-raspberry.md)
 With all the pieces we've built to far, we're ready to put some interesting data onto our servers. This week we'll get out a Raspberry Pi and start programming it. Each Raspberry Pi will be equipped with some kind of data-gathering device, and we'll see how to upload data from our Raspberry Pi to our server.
 
-### Week 6 — Midterm Part 1
+### [Week 6 — Midterm](lessons/06-midterm/06-midterm.md)
 It's time to integrate everything that we've learned so far. We'll split into teams, with each focusing on a different part of the client-server-sensor stack. After a discussion on software architecture, we'll talk a bit about how to organize our code. We'll spend the rest of class working on the code.
 
 ### Week 7 — Midterm Part 2 + Presentation
 There will be a bit of time in this class to iron out last minute changes to the code, and then we'll demo the whole system. We'll debrief, talking about what worked, what didn't and what we could do differently next time. Each team will get the chance to present on the technologies that they used to get the project done.
 
-### Week 8 - OSC + Interapp Routing
+### [Week 8 - OSC + Interapp Routing](lessons/07-osc/07-osc.md)
 Here the course switches gears a bit, and we start to discuss working with different libraries. The goal is to start generating ideas about a final project, so this will be when the final project prompt is given, even though we won't start on it for a few weeks. In this class we'll focus on OSC (Open Sound Control) and UDP. We'll talk about the difference between UDP and TCP, which is academic but still fun. Maybe we'll write something crazy, like something that scripts Illustrator using OSC.
 
-### Week 9 - Audio + Video Analysis
+### [Week 9 - Audio + Video Analysis](lessons/08-av/08-av.md)
 There are a ton of tools available for doing audio and video analysis. The particular pieces of software that we look at will depend on the skills and interests of the class, but the underlying concepts will be the same throughout. In the sound domain we'll look at envelope, spectrum, pitch class, spectral centroid and cepstral coefficients. Switching to video, we'll talk about color, points of interest, optical flow, facial recognition and pose tracking. Potential technologies  include medya.js, max/msp, and others.
 
-### Week 10 - Natural Language
+### [Week 10 - Natural Language](lessons/09-language/09-language.md)
 Extracting information from written and spoken language is the challenge of natural language processing, or NLP. We'll take a survey of some technologies, and talk about how to connect these tools to other programs for visualization and further contextualization.
 
-### Week 11 - Machine Learning
+### [Week 11 - Machine Learning](lessons/10-learning/10-learning.md)
 Having talked a bit about knowledge representation and feature vectors during the natual language module, we'll be ready to dive into machine learning more generally. We'll talk about how to get started with tools like ml5.js and TensorFlow.js, which make it much easier to work with neural nets. 
 
-### Week 12 - Gesture Analysis
+### [Week 12 - Gesture Analysis](lessons/11-gestures/11-gestures.md)
 Rounding out the second half of the course, we'll talk broadly about gesture analysis. We'll use an ML tool called Wekinator to experiment with classifying and parametrizing gestures. Then, we'll see how to connect those classifications to systems for generating video and sound. Hopefully we'll get a Leap Motion or some other gesture analyzing system that we can play around with as well.
 
-### Week 13 - Final Project Proposals
+### [Week 13 - Final Project Proposals](lessons/12-final/12-final.md)
 Similar to the workshop, the final project should be large enough to require a group effort. The goal for the final project is to build a system that communicates an effective idea by using multiple technologies in concert. Different members of the group are allowed and encouraged to work on different parts of the project. After proposals, there will be time to work on the project in class.
 
 ### Week 14 - Final Project Presentation
