@@ -1,2 +1,2 @@
-https://www.shield.ai/
-https://criticalengineering.org/
+- https://www.shield.ai/
+- https://criticalengineering.org/
