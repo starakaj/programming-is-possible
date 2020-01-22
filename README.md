@@ -1,4 +1,4 @@
-# Progrmaming is the Art of the Possible
+# Programming is the Art of the Possible
 
 > “Politics is the art of the possible, the attainable — the art of the next best” - Otto von Bismarck
 
