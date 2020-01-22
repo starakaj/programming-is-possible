@@ -8,17 +8,17 @@ DM-GY 6063
 @starakaj
 
 ## Essential Questions
-Questions that lead to meaningful exploration of CS concepts and practices. Examples:
-- How can programming represent your ideas and beliefs?
-- How might we use math to express ourselves creatively?
-- How might we use computing to impact our community?
-- What information is my computer sharing about me or my online activity?
+- What does "client-side" mean?
+- What is the difference between server-side and client-side rendering?
+- How can we deliver a whole application to the client?
+- What is webpack?
+- What is React?
 
 ## Introduction
-
+The Internet has changed a lot in the last 20 years. Maybe you've noticed. One huge change has been to the complexity, scale, and sophistication of applications that we can deliver on the client side. Many websites these days are implemented as a single-page app. Clicking between the different parts of such a website, the user isn't navigating between pages as much as they are loading different parts of a single application. Building a website like this isn't necessarily difficult, but it helps to have familiarity with a few popular front end frameworks. We'll be working with React and Webpack, but other comparable tools like Vue and Browserify are also totally valid.
 
 ### Target Audience / Prerequisite & Pre-Assessment
-What age range is this exercise designed for and what do students and teachers need to know or be able to do to be successful in the workshop? Any coding languages they should already be comfortable with, any frameworks or tools they should have installed before class.
+This module is part of DM-GY 6063, _Programming is the Art of the Possible_. This is a second semester creative coding course, designed for students who have a strong JavaScript foundation.
 
 ### Outcomes & Goals
 This can be easily answered by completing these example sentences:
@@ -26,42 +26,38 @@ This can be easily answered by completing these example sentences:
 * Students will walk away with a deeper understanding of…
 
 ### Pacing / Duration
-Number of total hours the unit will take in a typical workshop session(s). Please try to take into account transition time between instruction and hands on exercises if any prep is necessary.
-
-- Break down of the class schedule example: 
-  - :15 Overview, context, examples and vocabulary 
-  - :20 Instruction & hands on exercise 
-  - :15 Wrap-up discussion & sharing, reflection or journal and next steps
+TBD
 
 ## Materials Needed
-What hardware, software, or other materials will students or teachers need for lessons.
+You'll need a laptop and a connection to the Internet. Node should be installed. We'll be using the following Node libraries:
+- Express
+- React
+- Webpack
+- Babel
 
 ### Exercises To Do Before Class
-What materials (readings, tasks, exercises) should students complete before class to be prepared for the lesson.
+TBD. Maybe something about React? But also maybe not? Maybe that cool essay about assistive technology.
 
 ### Vocabulary (example)
-* Program: A procedure, or set of instructions, that performs a specific task when executed by a computer. 
-* Programming Language: The human-readable commands and syntax (or grammar rules) used to write programs. 
+* Front-end - 
+* Single-page web application - 
+* Bundling - 
+* Transpiling - 
+* Properties - 
+* State -
 
 ## Exercise Descriptions
-Descriptions of each exercise or phase of class. Similar to pacing but with more description of steps.
+TBD
 
 ## Student Reflections, Takeaways & Next Steps
-Additional materials for the students to leave with that can help them dig deeper into the subject or additional exercises and challenges to help students progress their knowledge to the next level and gain mastery of the subject through independent study.
-
-* Multiple Project Exit Points: an idea of high-medium-low projects so students are locked into one end product.
-  * First Steps - a simple exercise
-  * Next Steps - medium exercise
-  * Big Steps - a challenge or open ended study
-* Presentation: how might students share their work? With peers, outside world? What media or platforms could/should be referenced to students to encourage sharing (Instagram, Tumblr...)? 
-* Reflection: reflection questions that ask students to think about CS concepts and practices. How can students express what they’ve learned in some creative way?
+TBD
 
 ## Post Session
 
 ### References
-Include any sources cited, but not directly linked in the unit.
+TBD
 
 ### Implementation Guidance & Teaching Reflection  
-e.g. Please provide some guidance based on experience delivering the unit and potential modifications might you are considering making for future iterations of this unit. This is an opportunity for you as the unit author to give teachers practical guidance.
+TBD
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
