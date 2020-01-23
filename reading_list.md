@@ -8,3 +8,4 @@ These are in no particular order yet, I'm just collecting a bunch of stuff that 
 - https://mutamorphosis.wordpress.com/2008/10/03/pigeonblog/
 - https://github.com/fpereiro/backendlore
 - Graeber, David. _The Utopia of Rules on Technology, Stupidity, and the Secret Joys of Bureaucracy._
+- Shaw, Donald L. "Blue Tigers" _Borges: Ficciones._ Grant & Cutler, 1993.
