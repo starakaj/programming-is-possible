@@ -3,6 +3,8 @@
 ## Authors
 Sam Tarakajian for NYU IDM
 
+DM-GY 6063
+
 @starakaj
 
 ## Essential Questions
