@@ -1,71 +1,43 @@
-# About Our Template
-
-Eyebeam's educational focus is to promote artist-led, STEAM based education. This template is intended for our teaching artists to document their lessons with a larger goal for their curriculum to be referenced or used more easily in classrooms, libraries, after school programs or anywhere STEAM programming can be offered. 
-
-This template is based off of NYC Department of Education's CS4All Blueprint to teach creative computing. For more information on the core components they advise teachers and classes focus on, and to give the students the competency to be better prepared to engage with more difficult STEM lessons, I highly encourage you to read about [their approach here](https://blueprint.cs4all.nyc/what-is-cs/).
-
-# TEMPLATE BELOW
-
-## Class Title
+# Final Project
 
 ## Authors
-Your name (please include collaborators or funding institutions that have supported this work) and links to your site or Github.
+Sam Tarakajian for NYU IDM
+
+DM-GY 6063
+
+@starakaj
 
 ## Essential Questions
-Questions that lead to meaningful exploration of CS concepts and practices. Examples:
-- How can programming represent your ideas and beliefs?
-- How might we use math to express ourselves creatively?
-- How might we use computing to impact our community?
-- What information is my computer sharing about me or my online activity?
+- How does hardware and software fit into a creative project?
+- What libraries are interesting to you?
+- How much can really be accomplished in two weeks?
+- How will you work together?
 
 ## Introduction
-Please provide a narrative of what the unit is about, and why we should learn it that is simple enough that a student could read and understand. Example: "In this workship we will be using ... to explore ... so that you have a better understanding of how ..."
+Oh my oh my how the last few weeks have just flown by. Here we are at the end. Take a breath, you've earned it. Now it's time for us to start working on our final project. The goal here is to challenge yourself, and to bring all of the knowledge and experience you've gained throughout this course to bear on something concrete. Think about what you'd like to say, what techniques you'd like to investigate, and how you're going to accomplish something complete in the short time you have.
 
 ### Target Audience / Prerequisite & Pre-Assessment
-What age range is this exercise designed for and what do students and teachers need to know or be able to do to be successful in the workshop? Any coding languages they should already be comfortable with, any frameworks or tools they should have installed before class.
+This capstone assignment is part of DM-GY 6063, _Programming is the Art of the Possible_. This is a second semester creative coding course, designed for students who have a strong JavaScript foundation.
 
 ### Outcomes & Goals
-This can be easily answered by completing these example sentences:
-* In this workshop we will be… (soldering, setting up a RPi home network, making a wearable that communicates with….)
-* Students will walk away with a deeper understanding of…
+* In this final project, students will be working with a partner or a small group to build a software and/or hardware system, containing multiple interlinking parts, that connects to some of the themes we've been exploring in this class.
+* One major goal is to give students the chance to dive deeper into a particular subject or technique that interests them.
+* It's also intended that students come away with solid documentation that they can use to share the project.
+* Finally this project encourages students to work together as a team, leveraging each other's skills.
 
 ### Pacing / Duration
-Number of total hours the unit will take in a typical workshop session(s). Please try to take into account transition time between instruction and hands on exercises if any prep is necessary.
-
-- Break down of the class schedule example: 
-  - :15 Overview, context, examples and vocabulary 
-  - :20 Instruction & hands on exercise 
-  - :15 Wrap-up discussion & sharing, reflection or journal and next steps
-
-## Materials Needed
-What hardware, software, or other materials will students or teachers need for lessons.
+TBD. Honestly this is something that I'd like to write in class, where we talk about what's necessary to get a project like this done.
 
 ### Exercises To Do Before Class
-What materials (readings, tasks, exercises) should students complete before class to be prepared for the lesson.
+TBD
 
-### Vocabulary (example)
-* Program: A procedure, or set of instructions, that performs a specific task when executed by a computer. 
-* Programming Language: The human-readable commands and syntax (or grammar rules) used to write programs. 
-
-## Exercise Descriptions
+## Project Description
 Descriptions of each exercise or phase of class. Similar to pacing but with more description of steps.
 
-## Student Reflections, Takeaways & Next Steps
-Additional materials for the students to leave with that can help them dig deeper into the subject or additional exercises and challenges to help students progress their knowledge to the next level and gain mastery of the subject through independent study.
+## References
+TBD
 
-* Multiple Project Exit Points: an idea of high-medium-low projects so students are locked into one end product.
-  * First Steps - a simple exercise
-  * Next Steps - medium exercise
-  * Big Steps - a challenge or open ended study
-* Presentation: how might students share their work? With peers, outside world? What media or platforms could/should be referenced to students to encourage sharing (Instagram, Tumblr...)? 
-* Reflection: reflection questions that ask students to think about CS concepts and practices. How can students express what they’ve learned in some creative way?
-
-## Post Session
-
-### References
-Include any sources cited, but not directly linked in the unit.
-
-### Implementation Guidance & Teaching Reflection  
-e.g. Please provide some guidance based on experience delivering the unit and potential modifications might you are considering making for future iterations of this unit. This is an opportunity for you as the unit author to give teachers practical guidance.
+## Implementation Guidance & Teaching Reflection  
+TBD
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
