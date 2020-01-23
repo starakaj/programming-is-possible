@@ -10,15 +10,23 @@ In the first half of this course, we'll build an end-to-end system incorporating
 
 One semester of JavaScript programming experience is required. Technologies that we'll use in this course include Node, Heroku, Express.js, React.js, Raspberry Pi, MongoDB, OSC, ml5, Runway.ai, Syphon, Wekinator, Bela, Meyda.js, and more.
 
-### Info
+## Info
 
 This class is DM-GY 6063. I am Sam Tarakajian. You can reach me at st2774@nyu.edu.
+
+## Course Work
+
+Work for this course will consist of a [midterm project](lessons/06-midterm/06-midterm.md), a [final project](lessons/12-final/12-final.md), and weekly reading and programming assignments. Students are encouraged to work together and to help each other through programming assignments, but each student must submit their own work. Submissions will be made through GitHub—each programming assignment can be its own repository, or one repository can contain all the course work for this course (please reach out right away if you're unsure what this means or how to use GitHub). We'll be using the QCQ technique for reading assignments: for each reading assignment, you must come up with a Question, a Comment and a Quote. These will not be collected, but you may be asked to share them during class discussion.
+
+## Schedule
+
+Just to say that this is more of a road map, and we may (likely will) deviate from it along the way.
 
 ### [Week 1 — Intro](lessons/00-intro/00-intro.md)
 We'll spend some time getting to know each other, talking about the course objectives, and the structure of the course. We'll also have discussions about topics related to programming. What is a protocol? What is an interface? What is an encoding? What happens to information as it passes along these channels? We may also do some Node review, to as a warm up.
 
 ### [Week 2 — Node + Git + Express](lessons/01-node/01-node.md)
-This will be a fairly fast pace class, since most of the early part of the class should be review. We'll talk about how to set up a git repository, how to make commits and synchronize git with a remote. We'll write a simple node server, using express to handle routes. 
+This will be a fairly fast-paced class, since most of the early part of the class should be review. We'll talk about how to set up a git repository, how to make commits and synchronize git with a remote. We'll write a simple node server, using express to handle routes. 
 
 ### [Week 3 — Heroku + React](lessons/02-heroku/02-heroku.md)
 This week we'll dip our toes into client-side programming, looking at React and at deploying a web interface using React. To get used to the mechanics of React we'll build a project on glitch.com, before using React in our own Node server for server-side rendering. Finally, we'll add a Procfile to deploy the whole thing to Heroku.
