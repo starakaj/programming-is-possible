@@ -10,11 +10,12 @@ Sam Tarakajian for NYU
 - What is npm?
 - What is Express.js?
 - What is git?
+- What is a User Agent?
 
 ## Introduction
 In this class we're going to start diving into Node.js. We're using Node and not Python or some other scripting language mostly for the sake of simplicity. Other languages are still great, and the stuff we'll talk about in this class and throughout the course extends to other languages as well. 
 
-We'll talk about how to run a Node program, how to create a Node package, how to set up a simple server with Node, and how to push the whole thing up to github. In future classes we'll drill down into each of these areas a little more closely.
+We'll talk about how to run a Node program, how to create a Node package, how to set up a simple server with Node, and how to push the whole thing up to GitHub. In future classes we'll drill down into each of these areas a little more closely.
 
 ### Target Audience / Prerequisite & Pre-Assessment
 Before this class you should have Node installed, preferrably with nvm. On OS X you'll also want to have Developer Tools installed. Windows users should install Git Bash with MinGW. You might also want a coding text editor installed. Sublime Text and Visual Studio Code are both excellent.
@@ -28,8 +29,8 @@ Before this class you should have Node installed, preferrably with nvm. On OS X 
 - 0:10 What is Node used for? What is a web server? Why should we care?
 - 0:10 Finding our way around the command line, mkdir, rm, cd, ls
 - Using `git init` to create a repository.
-- Making git commits, making a branch, merging a branch
-- Creating a JavaScript script to run with Node, and running that script.
+- 0:10 Making git commits, making a branch, merging a branch
+- 0:10 Creating a JavaScript script to run with Node, and running that script.
 - Writing a script that prints out information about the operating system to the screen.
 - Using NPM to set up a Node package
 - Parts of a node package
@@ -58,7 +59,7 @@ You'll need a computer with a connection to the internet. Node, nvm, and git sho
 ### Exercises To Do Before Class
 You might want to read an intro to Node, and definitely brush up on your JavaScript if it's new to you.
 
-### Vocabulary (example)
+### Vocabulary
 * Node:
 * JavaScript:
 * Express:
@@ -69,13 +70,17 @@ You might want to read an intro to Node, and definitely brush up on your JavaScr
 Well as you know Node is a JavaScript runtime built on the V8 engine. A server is any program that waits for connections to the outside world, and which receives and transmits data over any formed connections. Usually a web server transmits data using HTTP, and serves data that can be rendered in a web browser.
 
 ### Learning your way around the command line
-We'll be using the command line a lot in this class. On OS X you have Terminal, though I recommend installing iTerm and zsh, since it will make your life easier. On Windows there's the command prompt, but I have no idea how to use that. Git for Windows, aka [Git Bash](https://gitforwindows.org/) is great and you should get it.
+We'll be using the command line a lot in this class. On OS X you have Terminal, though I recommend installing [iTerm](https://iterm2.com/) and [zsh](https://ohmyz.sh/), since it will make your life easier. On Windows there's the command prompt, but I have no idea how to use that. You're encouraged to use either Git for Windows, aka [Git Bash](https://gitforwindows.org/), or to follow [this guide](https://github.com/itp-dwd/2020-spring/blob/master/guides/windows-setup.md).
 
 For some of you this may be review, but just in case it's not let's do the basics. Everything you do in the terminal runs a program. The first word, separated by spaces, is the name of the program. What follows are arguments.
 
 `ls`
 
-This runs the command "ls" with no arguments
+This runs the command "ls" with no arguments. You can type
+
+`which ls`
+
+to see where the ls program resides on your computer.
 
 `mkdir newdir`
 
@@ -103,7 +108,7 @@ Git is an open source tool for version control. It wants to help you work on lar
 
 ### Node + git
 
-From the command line, you run node like a program. `node somefile.js` will run the file called "somefile.js". Let's create a simple file that prints out some information about the operating system that we're running on.
+From the command line, you run Node like a program. `node somefile.js` will run the file called "somefile.js". Let's create a simple file that prints out some information about the operating system that we're running on.
 
 - Use `require` to include other JavaScript files as a module.
 - Use the `os` module to access functions that describe the current operating system.
@@ -190,9 +195,13 @@ Additional materials for the students to leave with that can help them dig deepe
 ## Post Session aka Homework
 
 ### References
-Include any sources cited, but not directly linked in the unit.
+- [Node API](https://nodejs.org/dist/latest-v12.x/docs/api/)
+- [Node require/resolve](https://nodejs.org/dist/latest-v12.x/docs/api/modules.html#modules_require_resolve_request_options)
+- [Chance package](https://chancejs.com/)
+- [Express](https://expressjs.com/)
+- [Express User Agent](https://github.com/biggora/express-useragent/)
 
 ### Implementation Guidance & Teaching Reflection  
-e.g. Please provide some guidance based on experience delivering the unit and potential modifications might you are considering making for future iterations of this unit. This is an opportunity for you as the unit author to give teachers practical guidance.
+
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
