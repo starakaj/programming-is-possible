@@ -69,16 +69,20 @@ In the last class we'll share our group work. Final project presentations will i
 ### Evaluation
 You are required to attend all class meetings and submit all weekly assignments and a final project. You are also required to do the weekly reading and to prepare for in-class discussion.
 
-Grading (pass/fail) will be based on a combination of factors:
+Grading will be based on a combination of factors:
 
 Attendance, participation in class discussion, and engagement in other students' projects (40%)
-Assignments (40%)
+Programming Assignments (20%)
+Midterm Project (20%)
 Final Project (20%)
-We're following ITP's statement on Pass/Fail which states that a "Pass" is equivalent to an "A" or a "B" while anything less would be considered a "Fail".
 
 Attendance is mandatory. Please inform your teacher via email if you are going to miss a class. Two unexcused absences is cause for failing the class. (An unexcused lateness of 10 minutes or more is equivalent to 1/2 an absence.)
 
-This class will be participatory, you are expected to participate in discussions and give feedback to other students both in class and participate with their projects. This (along with attendance) is 40% of your grade.
+This class will be participatory, you are expected to participate in discussions and give feedback to other students both in class and participate with their projects. This (along with attendance) is 40% of your grade. There will be weekly reading assignments. We'll be using the QCQ technique for these assignments: for each reading assignment, you must come up with a Question, a Comment and a Quote. These will not be collected, but you may be asked to share them during class discussion.
+
+Programming assignments should be completed before the class in which they are due and uploaded to GitHub. Students are encouraged to work together and to help each other through programming assignments, but each student must submit their own work. Each programming assignment can be its own repository, or one repository can contain all the course work for this course (please reach out right away if you're unsure what this means or how to use GitHub).
+
+The midterm project will make up 20% of your grade. The midterm will include a programming component and a presentation component. The programming component should work in concert with the pieces submitted by the other groups. The presentation component will detail the tech choices you made and your working strategy. More information will be released when the midterm is assigned.
 
 Class will culminate with final projects. You are expected to push your abilities to produce something that utilizes what you have learned in the class that is useful in some manner to yourself or the world. This will comprise 20% of your grade.
 

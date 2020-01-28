@@ -11,6 +11,7 @@ DM-GY 6063
 - How do programs communicate with each other?
 - What is the difference between TCP and UDP?
 - What can we accomplish by making programs work together?
+- Wnat is Link?
 
 ## Introduction
 Interacting with hardware and software, we sometimes expect different pieces to be in communication. We expect our phone to sync contacts with our desktop. We expect our browser to connect to the internet. However, in many other cases each program is like its own walled garden. If we're composing music in Logic, we don't really expect to be able to synchronize our music with something happening in Photoshop. Usually that's not a problem, but often when we're trying to do something unique and creative, it's useful to be able to make programs communicate with each other.

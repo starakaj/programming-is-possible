@@ -14,7 +14,7 @@ DM-GY 6063
 - What does it mean to learn programming?
 
 ## Introduction
-In this introductory class, we'll spend a little time getting to know each other, as well as discussing what this course is all about. There will be an exercise to prime our understanding of the major course themes of interface and representation.
+In this introductory class, we'll spend a little time getting to know each other, as well as discussing what this course is all about. There will be an exercise to prime our understanding of the major course themes of interface, protocol, and encoding.
 
 ### Target Audience / Prerequisite & Pre-Assessment
 This course is intended for students at the undergraduate or graduate level who have completed an introduction to programming. The primary programming environment used in this course is Node, so familiarity with JavaScript or a C-like programming language is a big positive. However, the course will draw on a wide skillset, so proficiency in another language or environment is helpful.
@@ -26,37 +26,65 @@ This course is intended for students at the undergraduate or graduate level who 
 * Students will also learn to think critically about information systems.
 
 ### Pacing / Duration
-Number of total hours the unit will take in a typical workshop session(s). Please try to take into account transition time between instruction and hands on exercises if any prep is necessary.
-
-- Break down of the class schedule example: 
-  - :15 Overview, context, examples and vocabulary 
-  - :20 Instruction & hands on exercise 
-  - :15 Wrap-up discussion & sharing, reflection or journal and next steps
+- 0:10 - Welcome to class, introductions, how the class works
+- 0:20 - Discussion, what makes a program good? What is an elegant program? What is an efficient program? Is a program a math formula? Is a program an essay? When we write a program, who are we writing it for?
+- 0:05 - Quick break
+- 0:20 - Discussion, what is a protocol? An encoding? An interface? What is the Kyoto Protocol? What is the Hyper Text Transfer Protocol? What is an API? What is an API for? If you order 50 pizzas to your friends house, does that make you a hacker? What if you do it in person? What if you use the command line?
+- 0:20 - Discussion, how do people write programs? What is scrum? What is product management?
+- 0:05 - Quick break
+- 0:50 - Exercise, making ourselves into a protocol. Can we set up a protocol right here in class? Divide into two teams. Each team divides into two groups. Group A gets a prompt for something to draw. They can only communicate with Group B by showing them one of three cards. The goal is to get group B to draw the prompt as accurately as possible. Group B has one card that they can use to communicate back. You have 15 minutes to work out how you're going to do it.
+- 0:20 - Let's talk about the methods that each group came up with. What parts were an encoding? A protocol? An interface? How did you deal with the fact that you had to express omething complex using a very limited alphabet? What was the biggest strength of your particular choice. The biggest drawback? What shared assumptions did you and the drawing group had, that made things easier or harder?
+- Whatever's left - Start getting set up for the next class.
 
 ## Materials Needed
-- 0:10 - Welcome to class, introductions
-- 0:20 - Discussion, how do groups of people work together? How does a building get built? Ways of working on planning a wedding, but also a school project, but also teams at Apple, Google, and Amazon.
-- 0:20 - Discussion, what makes a program good? Is it terse? Elegant? Efficient? Why do we write math formulae, but then also remember common-sense interpretations? If the formulae are hard to understand, why do we bother with them in the first place? Is a computer program a math formula or an essay? When we write a computer program, who are we writing it for?
-- 0:05 - Quick break
-- 0:20 - Discussion, what is a protocol? An encoding? An interface? What is the Kyoto protocol? What is the Hyper Text Transfer Protocol? What is an API? How can you use an API subversively? What is an API for? If you order 50 pizzas to your friends house as a prank, does that make you a hacker?
-- 0:20 - Discussion, how do people write programs? What's scrum? Product management?
-- 0:05 - Quick break
-- 0:50 - Exercise, making ourselves into a protocol. Can we set up a protocol right here in class? Divide into two teams. Each team divides into two groups. Group A gets a prompt for something to draw. They can only communicate with group B by showing them one of three cards: a triangle, a circle, and a square. The goal is to get group B to draw the prompt as accurately as possible. Group B has one card that they can use to communicate back. You have 15 minutes to work out how you're going to do it.
-- 0:20 - Let's talk about the methods that each group came up with. What parts were an encoding? A protocol? An interface? How did you deal with the fact that you had to express something complex using a very limited alphabet? What was the biggest strength of your particular choice. The biggest drawback? What shared assumptions did you and the drawing group have, that made the task easier or harder?
-- Whatever's left - Let's talk about what you need to do to get set up for the next class.
+- Laptop
+- Internet connection
 
 ### Vocabulary (example)
 * Interface: 
 * Protocol:
 * Encoding: 
 
-## Exercise Descriptions
+## Class Script
+I don't plan to write detailed notes for most of these classes, but for this first one there's a lot to say. Hence these somewhat detailed notes. If you're teaching this class yourself, you can of course say whatever you want here, adding your own examples and subtracting as much of what I've written here as you like. For this intro to fit with the rest of the course, some key bits should remain:
+
+- Programming in this course refers to situated coding, or coding in the real world.
+- This course will strengthen your ability to write programs with ongoingness—that other people can pick up use.
+- Using code could mean continuing an open source project, appreciating a work of art, or joining a team.
+
+### Introductions
+We can start by going around and introducing each other.
+
+This course is called "Special Topics in Digital Media" which is almost definitely a way for both the school and for me to say that we don't really have a good name for what this course is about. If you look on the GitHub, you'll see this quote to open the course "Politics is the art of the possible, the attainable — the art of the next best."
+
+It might help to know that I'm not really an academic or an artist, though I've been working with academics and artists for ten years now. If there's one thing that's helped me organize the material for this course, it's the idea that the best way to learn to program is to do lots of programming. I want to try to give you the best of what ten years of working as a programmer has given me, in terms of an awareness of what programming is and how to do it well. This is the first time I've taught this course, the first time I've taugh at this school, and the first time I've taught this material. I'm hoping that we can work together. I'm imagining this being a bit like a senior-developer to junior-developer type relationship. I'm sure there's lots of things you know that I don't, and hopefully over the next few weeks we'll all grow a lot together.
+
+In the course title I've substituted the word "programming" for the word "politics," not to say that with progamming you never get anything real done. Rather I'm interested in drawing this distinction between coding as an area of study and programming as a discipline. It's a relationship that's sort of like geometry and architecture. When you project coding down into the real world, you get programming, which I think of like situated coding. My thesis for this course, which hopefully I can convince you of by the end, is that this difference between coding and programming is more than just _pure_ versus _real_ or _clean_ vs _dirty_. Programming isn't diminished or restricted by being in the world. Rather, it draws power from its entanglements. It entangles itself with programmers, customers, audiences, society, culture, and other programs.
+
+One way we'll see that entanglement is with each other. There are two big assignments in this course, the first being your midterm assignment. My goal for that assignment is to give you all something to work on that's too big for any one group to finish by themselves. So, each group will work on a piece of the assignment in parallel. Before you complete the assignment, we'll put the pieces together and demo the whole system working in concert. In order to work on the assignment, you'll have to figure out how to work with each other. How can one team test the interaction with another part of the system, before that part is finished? How will you test your ability to work with data, before any data has been gathered?
+
+In the second half of this course, we'll start looking at different ways that computers can measure and manipulate data. Programming involves writing software that works with other programs. Programs expose their capabilities through interfaces, and communicate with each other using protocols. We'll look at protocols like UDP, OSC, Websockets, MIDI and Link; we'll also investigate data analysis frameworks dealing with audio, video, language, gesture, and generalized machine learning.
+
+Throughout the course, there will be reading assignments that are chosen to get you thinking about how programming impacts the world. Programming is situated coding, and that situation includes human society and culture. Some of this reading will talk about beneficial changes that programming brings to society. Some will challenge the idea that certain technologies are always good. Some will simply reflect on what programming is, and how concepts from programming mirror our own experince as human beings.
+
+That, in a large nutshell, is what this course will be all about.
+
+### How do groups work together?
+
+
+
+### What makes a program good?
 
 ## Student Reflections, Takeaways
 TBD
 
 ## Post Session aka Homework
+
+### Installation
 Make sure that you come to the next class with Node, NPM and Git installed on your machine (see installation instructions). Make sure you have an account on github. If you hate github for some moral or philosophical reason, talk to me and we'll figure out how to use some other host.
+
+### Reading
+- https://www.sametab.com/blog/frameworks-for-remote-working
 
 ### References
 TBD
