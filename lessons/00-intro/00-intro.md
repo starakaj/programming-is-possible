@@ -67,9 +67,23 @@ Throughout the course, there will be reading assignments that are chosen to get 
 
 That, in a large nutshell, is what this course will be all about.
 
+### Cool Examples
+
+When I say I want to help you build cool things, what kind of thing am I talking about?
+
+- Weirdcore: https://www.youtube.com/watch?v=-0vrrTQFCjA — Stage design, just how many moving parts go into making something complex work. How many different kinds of data are moving. Tightly coordinating large systems.
+- Daito Manabe: https://www.youtube.com/watch?v=Jkupc48RBRw — Drones synced to music. Representing their position with MIDI.
+- Leafcutter John: https://www.youtube.com/watch?v=2jIlLHfSEfs — Making an instrument you play with light. How does the gesture make sense?
+- David Bowen: https://www.dwbowen.com/telepresentwater — Tele-present water. Just very cool, but also what are the parts at play?
+- Collective Of Two: https://vimeo.com/386776425 — Invisible Hand. Gathering incidental data and combining it both literally and artistically. Why does a law firm pay for something like this? Why do these guys make it?
+
+Looking at these examples, what kinds of techniques can you bring to your own work?
+
 ### What makes a program good?
 
-Okay, I want to start with a discussion: what makes a program good? Let's look at a case study. This is a game called VVVVVV. Maybe you've played it. It's about jumping around a space station. As far as I can tell it's quite beloved.   According to Anthony Burch on Descructoid, VVVVVV is "untarnished videogame ecstasy".
+Okay, I want to start with a discussion: what makes a program good? Now, given the experience that you've had up to this point in your academic and professional career, what would you say makes a program good? Let's write the rules.
+
+Let's look at a case study. This is a game called VVVVVV. Maybe you've played it. It's about jumping around a space station. As far as I can tell it's quite beloved.   According to Anthony Burch on Descructoid, VVVVVV is "untarnished videogame ecstasy".
 
 VVVVVV is interesting because the developer has recently released the source code. It's doubly interesting because, according to a lot of people who have looked at the code, it's somewhat dubious. "VVVVVV is not a technically sophisticated game! Even by the standards of self taught indie devs, it’s kind of a mess," says the creator.
 
@@ -119,12 +133,47 @@ Can you guess what this does? This is the General Email Regex from RFC 5322, the
 
 Is this a good program?
 
-## Protocol, Interface, Encoding
+### Protocol, Interface, Encoding
 
-Okay, let's keep discussing but I want to change gears a bit. Let's tal
+Okay, let's keep discussing but I want to change gears a bit. Let's talk about something different. I want to talk about a few terms that get thrown around a lot: protocol, interface, encoding. What do these terms mean? Again, I want to write down the definitions.
 
-## Student Reflections, Takeaways
-TBD
+- What is social protocol? What does it mean to violate social protocol?
+- What is Hyper Text Transfer Protocol? What does it mean to violate the Hyper Text Transfer Protocol? 
+- What is the Kyoto Protocol? What does it mean to violate the Kyoto Protocol?
+
+Social - Ways of speaking to and acting around other people. But also talking over each other.
+HTTP - System of rules that allows two or more entities to transmit information via variation in a physical quantity.
+Kyoto - Six gasses are translated to "emissions equivalents" and more developed countries have to meet stricter targets. Commitments. Financial and legal incentives to cooperate (cooperation also taking its literal meaning here: co-operate).
+
+- What is an interface? What happens at interfaces?
+
+![A shipping container](./img/container.jpg)
+
+Is this shipping container an interface? What does it interface?
+
+![An ATM](./img/atm.jpg)
+
+Is this an interface?
+
+![Bank Teller](./img/bank-teller.jpg)
+
+How is this interface different?
+
+- Encoding. Information converted to a form.
+
+![Music Notes](./img/notes.png)
+
+Is this an encoding? How is it different from this:
+
+![Audio Waveform](./img/waveform_visual.png)
+
+Or this:
+
+![Spectrogram](./img/spectrogram.png)
+
+How does it relate to this:
+
+![Harmonic Table](./img/harmonic_table.png)
 
 ## Post Session aka Homework
 
@@ -135,9 +184,6 @@ Make sure that you come to the next class with Node, NPM and Git installed on yo
 - https://www.sametab.com/blog/frameworks-for-remote-working
 
 ### References
-TBD
-
-### Implementation Guidance & Teaching Reflection  
 TBD
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
