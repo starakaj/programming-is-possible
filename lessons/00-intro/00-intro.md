@@ -28,9 +28,7 @@ This course is intended for students at the undergraduate or graduate level who 
 ### Pacing / Duration
 - 0:10 - Welcome to class, introductions, how the class works
 - 0:20 - Discussion, what makes a program good? What is an elegant program? What is an efficient program? Is a program a math formula? Is a program an essay? When we write a program, who are we writing it for?
-- 0:05 - Quick break
 - 0:20 - Discussion, what is a protocol? An encoding? An interface? What is the Kyoto Protocol? What is the Hyper Text Transfer Protocol? What is an API? What is an API for? If you order 50 pizzas to your friends house, does that make you a hacker? What if you do it in person? What if you use the command line?
-- 0:20 - Discussion, how do people write programs? What is scrum? What is product management?
 - 0:05 - Quick break
 - 0:50 - Exercise, making ourselves into a protocol. Can we set up a protocol right here in class? Divide into two teams. Each team divides into two groups. Group A gets a prompt for something to draw. They can only communicate with Group B by showing them one of three cards. The goal is to get group B to draw the prompt as accurately as possible. Group B has one card that they can use to communicate back. You have 15 minutes to work out how you're going to do it.
 - 0:20 - Let's talk about the methods that each group came up with. What parts were an encoding? A protocol? An interface? How did you deal with the fact that you had to express omething complex using a very limited alphabet? What was the biggest strength of your particular choice. The biggest drawback? What shared assumptions did you and the drawing group had, that made things easier or harder?
@@ -69,11 +67,61 @@ Throughout the course, there will be reading assignments that are chosen to get 
 
 That, in a large nutshell, is what this course will be all about.
 
-### How do groups work together?
-
-
-
 ### What makes a program good?
+
+Okay, I want to start with a discussion: what makes a program good? Let's look at a case study. This is a game called VVVVVV. Maybe you've played it. It's about jumping around a space station. As far as I can tell it's quite beloved.   According to Anthony Burch on Descructoid, VVVVVV is "untarnished videogame ecstasy".
+
+VVVVVV is interesting because the developer has recently released the source code. It's doubly interesting because, according to a lot of people who have looked at the code, it's somewhat dubious. "VVVVVV is not a technically sophisticated game! Even by the standards of self taught indie devs, it’s kind of a mess," says the creator.
+
+Someone pointed out this particular function, involving a several-hundred case switch stetement for determining the state of the game https://github.com/TerryCavanagh/VVVVVV/blob/12497f6478149e1c57191837316cd2462bf7b1ec/desktop_version/src/Game.cpp#L692.
+
+So, all together we have:
+- The game is, on some level, good. Foremost, it actually released, which is itself an accomplishment. Further, it's well liked and relatively stable.
+- Something about the code is off. Looking at the code, we feel like we could improve its organization.
+
+Is this a good program?
+
+Let's look at another example. This is from the original Quake source code, maybe you've seen it before.
+
+```c
+float Q_rsqrt( float number )
+{
+	long i;
+	float x2, y;
+	const float threehalfs = 1.5F;
+
+	x2 = number * 0.5F;
+	y  = number;
+	i  = * ( long * ) &y;                       // evil floating point bit level hacking
+	i  = 0x5f3759df - ( i >> 1 );               // what the fuck? 
+	y  = * ( float * ) &i;
+	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
+//	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+
+	return y;
+}
+```
+
+This code returns an approximation to an inverse square root, which is important when calculating lighting. It's faster than computing the equivalent using floating point arithmetic (at least on older hardware). At the same time, it involves some very difficult to understand math that depends on the underlying hardware. So, let's cast two things in tension:
+
+- This code works. It got Quake released, and it wouldn't have been possible without this code.
+- Imagine there was a bug in this code. If you were hired to fix the code and you hadn't worked on the original, how would you feel?
+
+Given those two things, is this a good program?
+
+One last example, take a look at this
+
+```re
+(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
+```
+
+Can you guess what this does? This is the General Email Regex from RFC 5322, the Internel Message Format specification. It matches valid emails 99.99% of the time.
+
+Is this a good program?
+
+## Protocol, Interface, Encoding
+
+Okay, let's keep discussing but I want to change gears a bit. Let's tal
 
 ## Student Reflections, Takeaways
 TBD
