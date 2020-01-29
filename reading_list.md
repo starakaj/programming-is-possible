@@ -6,6 +6,7 @@
 - http://www.pm-air.net/index.php
 - https://mutamorphosis.wordpress.com/2008/10/03/pigeonblog/
 - https://github.com/fpereiro/backendlore
+- https://www.sametab.com/blog/frameworks-for-remote-working
 - Graeber, David. _The Utopia of Rules on Technology, Stupidity, and the Secret Joys of Bureaucracy._
 - Shaw, Donald L. "Blue Tigers" _Borges: Ficciones._ Grant & Cutler, 1993.
 

@@ -171,7 +171,6 @@ Suppose we wanted to re-use the "namer" functionality that we created earlier. B
 - Add a new route for the name
 
 ### User Agents and returning gross HTML strings
-
 You may have noticed that we're just returning JSON, which doesn't render in a cool way on the page. If we actually want the page to generate a webpage, then we'll have to return HTML. We'll look next week at templating, and at how to generate a page that way. For this week, we'll just be working with HTML strings.
 
 - Modify the root to return an actual HTML page
@@ -181,6 +180,8 @@ For the workshop portion of this class, we're going to make use of a user agent.
 - See if you can figure out how to get the user agent from an express request.
 - Make a webpage that tells the user how much you know about them.
 - Upload the whole thing to github
+
+## Homework
 
 ## Student Reflections, Takeaways & Next Steps
 Additional materials for the students to leave with that can help them dig deeper into the subject or additional exercises and challenges to help students progress their knowledge to the next level and gain mastery of the subject through independent study.
