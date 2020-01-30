@@ -3,7 +3,6 @@
 ## Fun Reading
 - http://www.media-arts-uts.com/aes1/wp-content/uploads/2012/01/BasicAnimationAesthetics.pdf
 - https://www.mnn.com/earth-matters/climate-weather/stories/pigeons-write-a-smog-blog
-- http://www.pm-air.net/index.php
 - https://mutamorphosis.wordpress.com/2008/10/03/pigeonblog/
 - https://github.com/fpereiro/backendlore
 - https://www.sametab.com/blog/frameworks-for-remote-working
@@ -16,3 +15,4 @@
 - https://www.youtube.com/watch?v=2jIlLHfSEfs (Leafcutter light thing)
 - https://www.dwbowen.com/telepresentwater (Tele-Present Water David Bowen)
 - https://vimeo.com/386776425 (Invisible Hand, https://collectiveoftwo.com/)
+            
