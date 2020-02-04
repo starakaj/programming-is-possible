@@ -67,9 +67,9 @@ You might want to read an intro to Node, and definitely brush up on your JavaScr
 
 ## Exercise Descriptions
 ### What is Node? What is a web server?
-Well as you know Node is a JavaScript runtime built on the V8 engine. A server is any program that waits for connections to the outside world, and which receives and transmits data over any formed connections. Usually a web server transmits data using HTTP, and serves data that can be rendered in a web browser.
+Well as you know Node is a JavaScript runtime built on the V8 engine. A server is any program that waits for connections to the outside world, and which receives and transmits data over any formed connections. Often when we browse the Internet we're dealing with a browser that transmits data using HTTP, and which serves data that can be rendered in a web browser (HTML, CSS, JavaScript). However, servers are really free to communicate using whatever protocol they like. Often modern web pages are rendered using a mix of techniques. If you're listening to music on SoundCloud, one server might provide the content of the web page, and another server entirely might be responsible for streaming music.
 
-### Learning your way around the command line
+### The command line
 We'll be using the command line a lot in this class. On OS X you have Terminal, though I recommend installing [iTerm](https://iterm2.com/) and [zsh](https://ohmyz.sh/), since it will make your life easier. On Windows there's the command prompt, but I have no idea how to use that. You're encouraged to use either Git for Windows, aka [Git Bash](https://gitforwindows.org/), or to follow [this guide](https://github.com/itp-dwd/2020-spring/blob/master/guides/windows-setup.md).
 
 For some of you this may be review, but just in case it's not let's do the basics. Everything you do in the terminal runs a program. The first word, separated by spaces, is the name of the program. What follows are arguments.
@@ -96,20 +96,73 @@ These are some useful programs that we'll use all the time.
 - `start`: On Windows, `start .` is a handy way to open the current directory in the file explorer.
 - `open`: On OS X, `open .` is a handy way to open the current directory in Finder.
 
+Pressing tab will engage tab completion. Different shells have different options for tab completion. In OS X _Terminal_ for example, pressing tab will complete a path element if available. Other shells like _Oh My Zsh_ will offer tab completion for things like git branches.
+
+You can press the up arrow to start walking back through previous commands. You can also type `history` to view a list of previous commands.
+
+Let's make a directory, in which we'll do all our work today.
+
+```bash
+mkdir pip-node 
+cd pip-node
+```
+
 ### Git
 
 Git is an open source tool for version control. It wants to help you work on large, complex projects with multiple people all working on different parts at the same time. Git is organized around the notion of a commit. You do some work, which usually involves adding, moving, removing or updating files. You then commit that work, which attaches a hash identifier to that group of edits. 
 
-- Let's add a README.md file and then commit it.
+- First thing to do is initialize this as a git repository.
+```bash
+git init
+```
+- If you do `ls -a` you should see a new directory called `.git`. Normally you won't need to touch this at all. Git should take care of everything going on here.
+- Let's add a README.md file.
+```bash
+touch README.md
+git status
+```
+- You should see an indication that git recognizes this file as new, but it hasn't been committed yet
+```bash
+git add .
+git commit -m "Added a file README.md"
+```
+- This adds a commit to the current branch (you can always type `git status` to see which branch you're on).
+- Let's switch to a new branch 
+```bash
+git checkout -b os-info
+```
 - Now let's add another file called os-info.js.
 - Let's commit that file.
-- Now let's create a new branch called os-info.
-- Checkout that branch before moving to the next section.
+- Now if we wanted to, we could merge those changes back into the master branch
+```bash
+git checkout master
+git merge os-info
+```
+- This will do a "fast forward" merge, because there are no changes on master.
+- Now let's try making a merge conflict happen.
+```
+git checkout master
+echo "This is the first line of the readme" > README.md
+git commit -am "modified README on master"
+git checkout os-info
+echo "No, this is the first line of the readme" > README.md
+git commit -am "modified README on os-info"
+git checkout master
+git merge os-info
+```
+- You'll see a merge conflict. Git will add some markers to the file that show you where the conflict is. You can modify the file as needed, and the add and commit it.
 
 ### Node + git
 
 From the command line, you run Node like a program. `node somefile.js` will run the file called "somefile.js". Let's create a simple file that prints out some information about the operating system that we're running on.
 
+- Switch over to the `os-info` branch
+- Modify the contents of `os-info.js`
+```js
+const os = require("os"); // pull in the 'os' node module (part of node)
+
+console.log(`Looks like you're running ${os.platform()} ${os.arch()}`);
+```
 - Use `require` to include other JavaScript files as a module.
 - Use the `os` module to access functions that describe the current operating system.
 - `os` is part of the Node framework. You can browse all of the Node libraries in the (API Documentation)[https://nodejs.org/dist/latest-v12.x/docs/api/].
@@ -137,8 +190,15 @@ Having a `package.json` file allows us to inlcude other npm packages as dependen
 
 With this, we can make a .js file that will give us a random name.
 
-### Debugging
+```js
+const chance = require("chance"); // load the chance module
+const c = new chance(); // Create an actual chance instace. See the docs.
 
+console.log(`Your new random name is ${c.name()}`);
+console.log(`You live on ${c.street()} in ${c.state()}`);
+```
+
+### Debugging
 Suppose this file wasn't working correctly. How would be go about debugging it?
 
 - Run the Node file again, this time passing "--inspect-brk"
@@ -148,7 +208,6 @@ Suppose this file wasn't working correctly. How would be go about debugging it?
 - You'll be able to find your process and set breakpoints.
 
 ### Express
-
 Express is a Node package that makes setting up an HTTP server super simple. It lets us do things like route requests to an appropriate function, and send data back to the client.
 
 - `npm install express`
@@ -162,7 +221,6 @@ Express is a Node package that makes setting up an HTTP server super simple. It 
 This creates an extremely simple server that responds to HTTP GET requests, sending back a simple message as structured JSON. Express routes can be more complex.
 
 ### Require and Module Resolution
-
 Suppose we wanted to re-use the "namer" functionality that we created earlier. By using `module.exports`, we can create reusable functions that other parts of the code can use.
 
 - Go back to namer.js
@@ -170,30 +228,86 @@ Suppose we wanted to re-use the "namer" functionality that we created earlier. B
 - Go back to our server function, and require the "namer.js" file. Notice that we have to use a path prepended with "./", so that Node knows how to resolve the .js file.
 - Add a new route for the name
 
-### User Agents and returning gross HTML strings
-You may have noticed that we're just returning JSON, which doesn't render in a cool way on the page. If we actually want the page to generate a webpage, then we'll have to return HTML. We'll look next week at templating, and at how to generate a page that way. For this week, we'll just be working with HTML strings.
+### Templating
+We'll look at templating in more detail in a later week probably, but you can hack your own templating using replacements and file loading. This will also allow you to use css in conjunction with `express.static`.
 
-- Modify the root to return an actual HTML page
+```js
+// You can use replace to pretend like you're using React
+app.get("/identity", (req, res) => {
+    const newName = randomName();
+    const newAddress = randomPlace();
+    let htmldoc = fs.readFileSync("./templates/index.html", "utf8");
+    htmldoc = htmldoc.replace("%%%NAME%%%", newName);
+    htmldoc = htmldoc.replace("%%%PLACE%%%", newAddress);
+    res.send(
+        htmldoc
+    );
+});
+```
 
-For the workshop portion of this class, we're going to make use of a user agent. A user agent is a little bit of information that your browser sends to the server when it makes a request. It lets the server know all kinds of stuff, like what kind of machine you have and what language you speak.
+### Temporary local state
+Suppose you wanted to count the number of times that someone had visited your homepage. That's pretty simple, all you need to do is to create a local variable to store the number of times that someone has visited your page.
 
-- See if you can figure out how to get the user agent from an express request.
-- Make a webpage that tells the user how much you know about them.
-- Upload the whole thing to github
+```js
+let counter = 0;
 
-## Homework
+app.get("/", (req, res) => {
+    counter++;
+    let htmldoc = fs.readFileSync("./templates/index.html", "utf8");
+    htmldoc = htmldoc.replace("%%%VIEWS%%%", counter);
+    res.send(
+        htmldoc
+    );
+});
+```
+
+## Workshop: Set a name
+Okay, for the workshop portion of the class, add another route to the page that lets the user set their name. Display their name on the homepage, if they've set it.
+
+### Forms
+
+You'll need to add a form to the page. A form looks something like this. 
+
+```html
+<!--Used to set user name. The action is the name of the express route. The name will be the name of the field in body-->
+<form method="POST" action="/set-name">
+    <label for="username">Enter your new name: </label>
+    <input id="username" type="text" name="username" />
+    <input type="submit" />
+</form>
+```
+
+The important bits:
+- `method="POST"` This is how the browser knows where to send the form data. This corresponds to an express route.
+- `name="username"` This will be the name of the property defined in the post body.
+
+### urlencoded
+
+Before anything else will work, we need to tell express that we want to use the urlencoded middleware. This lets us get `username` out of `req.body` later.
+
+```js
+// server.js
+app.use(express.static("static"));
+app.use(express.urlencoded());
+
+// ... //
+
+app.post("/set-name", (req, res) => {
+    const suggestion = req.body.username;
+
+```
+
+### Components
+This should be about all the info you need so:
+- A new route with a form for updating user name
+- A new route to handle the form submission (remember to use post!)
+- Display the users name on the homepage (or anywhere else you fancy)
+
+## Homework: Text Adventure
+
+See [Homework 2](01-node-hw.md)
 
 ## Student Reflections, Takeaways & Next Steps
-Additional materials for the students to leave with that can help them dig deeper into the subject or additional exercises and challenges to help students progress their knowledge to the next level and gain mastery of the subject through independent study.
-
-* Multiple Project Exit Points: an idea of high-medium-low projects so students are locked into one end product.
-  * First Steps - a simple exercise
-  * Next Steps - medium exercise
-  * Big Steps - a challenge or open ended study
-* Presentation: how might students share their work? With peers, outside world? What media or platforms could/should be referenced to students to encourage sharing (Instagram, Tumblr...)? 
-* Reflection: reflection questions that ask students to think about CS concepts and practices. How can students express what they’ve learned in some creative way?
-
-## Post Session aka Homework
 
 ### References
 - [Node API](https://nodejs.org/dist/latest-v12.x/docs/api/)

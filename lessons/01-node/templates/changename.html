@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Change your name</title>
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+    </head>
+    <body>
+        <h1>Change your name</h1>
+        <p>%%%CURRENT_NAME%%%</p>
+        <form method="POST" action="/set-name">
+            <label for="username">Enter suggestion: </label>
+            <input id="username" type="text" name="username" />
+            <input type="submit" />
+        </form>
+    </body>
+</html>
