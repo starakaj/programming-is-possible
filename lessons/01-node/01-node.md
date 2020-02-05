@@ -288,7 +288,7 @@ Before anything else will work, we need to tell express that we want to use the 
 ```js
 // server.js
 app.use(express.static("static"));
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 
 // ... //
 

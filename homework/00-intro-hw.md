@@ -2,7 +2,7 @@
 
 ## Due Date
 
-This assignment follows the first lesson, [00-intro](../lessons/00-intro/01-intro.md). It must be turned in by midnight, February 4. 
+This assignment follows the first lesson, [00-intro](../lessons/00-intro/00-intro.md). It must be turned in by midnight, February 4. 
 
 ## Description
 
