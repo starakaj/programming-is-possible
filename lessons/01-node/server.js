@@ -33,9 +33,6 @@ app.get("/identity", (req, res) => {
     );
 });
 
-app.get("nameform", (_, res) => {
-
-})
 
 app.listen(port, () => {
     console.log(`Express is listening on port ${port}`);
