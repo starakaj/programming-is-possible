@@ -14,6 +14,10 @@ One semester of JavaScript programming experience is required. Technologies that
 
 This class is DM-GY 6063. I am Sam Tarakajian. You can reach me at st2774@nyu.edu.
 
+## Office Hours
+
+Office hours will be Tuesdays from 3pm-5pm. You can find me in the IDM Adjunct Office (370 Jay Room 344). Let me know if you can't make it and we'll arrange something via Hangouts.
+
 ## Course Work
 
 Work for this course will consist of a [midterm project](lessons/06-midterm/06-midterm.md), a [final project](lessons/12-final/12-final.md), and weekly reading and programming assignments. Students are encouraged to work together and to help each other through programming assignments, but each student must submit their own work. Submissions will be made through GitHub—each programming assignment can be its own repository, or one repository can contain all the course work for this course (please reach out right away if you're unsure what this means or how to use GitHub). We'll be using the QCQ technique for reading assignments: for each reading assignment, you must come up with a Question, a Comment and a Quote. These will not be collected, but you may be asked to share them during class discussion.
