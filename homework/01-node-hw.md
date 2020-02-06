@@ -7,7 +7,6 @@ This assignment follows the second lesson, [01-node](../lessons/01-node/01-node.
 ## Reading
 
 - Baker, Kevin T. _Model Metropolis_ https://logicmag.io/play/model-metropolis/
-- Graeber, David _The Utopia of Rules_ `<link provided> `
 
 ## Assignment - Text Adventure
 
