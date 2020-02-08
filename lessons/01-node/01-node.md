@@ -305,7 +305,7 @@ This should be about all the info you need so:
 
 ## Homework: Text Adventure
 
-See [Homework 2](01-node-hw.md)
+See [Homework 2](../../homework/01-node-hw.md)
 
 ## Student Reflections, Takeaways & Next Steps
 
