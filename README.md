@@ -16,7 +16,7 @@ This class is DM-GY 6063. I am Sam Tarakajian. You can reach me at st2774@nyu.ed
 
 ## Office Hours
 
-Office hours will be Tuesdays from 3pm-5pm. You can find me in the IDM Adjunct Office (370 Jay Room 344). Let me know if you can't make it and we'll arrange something via Hangouts.
+Office hours will be Mondays from 3pm-5pm. You can find me in the IDM Adjunct Office (370 Jay Room 344). Let me know if you can't make it and we'll arrange something via Hangouts.
 
 ## Course Work
 
