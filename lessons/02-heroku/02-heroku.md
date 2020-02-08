@@ -8,7 +8,6 @@ Sam Tarakajian for NYU
 ## Essential Questions
 - How can you render dynamic webpages? Also what is a dynamic webpage?
 - How do you actually host a Node.js script somewhere?
-- Why would you even want to?
 
 ## Introduction
 This class is about taking Node out of production and putting it on the Internet. We'll talk about how to start building a website that has both a public face, intended to be viewed by a person, as well as an API, intended to be viewed by a machine.

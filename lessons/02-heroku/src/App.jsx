@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOMServer from "react-dom/server";
+import ReactDOM from "react-dom";
 import { Welcome } from "./Welcome";
 import { ServerInfo } from "./ServerInfo";
 import os from "os";
