@@ -317,6 +317,6 @@ See [Homework 2](../../homework/01-node-hw.md)
 - [Express User Agent](https://github.com/biggora/express-useragent/)
 
 ### Implementation Guidance & Teaching Reflection  
-
+If you're teaching this class at a university, especially one where students are working with Node in other courses, they might already have Node installed on their machine. They might have installed it in way that conflicts with the strategy recommended in this class (nvm). In that case, you'll have to work with them to get their machine sorted out.
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
