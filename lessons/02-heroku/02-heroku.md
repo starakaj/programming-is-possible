@@ -227,23 +227,355 @@ To https://git.heroku.com/dried-fish-server.git
 
 That's it! Go to the URL indicated to see your page on the real internet.
 
-## Student Reflections, Takeaways & Next Steps
-Additional materials for the students to leave with that can help them dig deeper into the subject or additional exercises and challenges to help students progress their knowledge to the next level and gain mastery of the subject through independent study.
+### React Basics
 
-* Multiple Project Exit Points: an idea of high-medium-low projects so students are locked into one end product.
-  * First Steps - a simple exercise
-  * Next Steps - medium exercise
-  * Big Steps - a challenge or open ended study
-* Presentation: how might students share their work? With peers, outside world? What media or platforms could/should be referenced to students to encourage sharing (Instagram, Tumblr...)? 
-* Reflection: reflection questions that ask students to think about CS concepts and practices. How can students express what they’ve learned in some creative way?
+Okay, now that we've made it this far, let's shift gears and talk a bit about React. Last week we were using HTML templates, with strings like `%%%TITLE%%%` that we would replace with some text, or even a bit of HTML that we wanted to use in its place. At an extremely high level, React does the same basic thing. However, it does it much more powerfully and flexibly. 
 
-## Post Session
+One downside to getting started with React is that it requires a bit of setup. We'll be working with a language for React called JSX that looks a bit like a blend of JavaScript and HTML. However, modern browsers can't work with JSX, so we have to _transpile_ (a porte-monteau of translate and compile) the JSX into JavaScript. To do that, we need to set up a local toolchain with developer tools called Webpack.
+
+All of that toolchain stuff can get in the way of our learning how to work with React. So before we dive into that, let's head to glitch.com. We can use their setup to try out React without needing to set up as much stuff.
+
+Navigate to glitch.com, log in. The project that we'll be starting from can be found at https://glitch.com/~starter-react. Let's go through the parts of this very briefly.
+
+- _server.js_ - This should look extremely familiar, it's a server just like the one that we built last week.
+- _watch.json_ - This is a glitch.com thing, that tells the app container when to re-launch. You can ignore this.
+- _webpack.config.js_ - This describes the configuration of the Webpack bundler. For now, we can ignore this, but we'll return to it later.
+- _index.html_ - This page loads our bundled _.js_ code and injects it into the page. For now we can ignore this.
+- _app.jsx_ - This kicks off the whole program, and loads the "HelloWorld" component into the _div_ with the id "main".
+- _HelloWorld.jsx_ - This is the component that is the root of the entire application. Let's start here—this is where we can start to change the behavior of the app.
+
+Start by deleting everything in _HelloWorld.jsx_ (You can open up the preview to see what this does). Replace it with something like this:
+
+```jsx
+const React = require("react");
+
+const HelloWorldComponent = function() {
+  return <h1>This is a big ol' title</h1>
+};
+
+module.exports = HelloWorldComponent;
+```
+
+What the heck is going on here? Well there's a couple of things happening that we haven't talked about yet. First, we're using this thing called module.exports.
+
+### module.exports
+
+This is a mechanism that lets JavaScript files share functionality with each other. When you `require` another file, it's `module.exports` that defines what gets shared. We might have talked about this last week, I don't remember.
+
+Create a new file at `app/logic/utils.js`. Add to that file something like this:
+
+```js
+function randomNumber() {
+  return Math.random();
+}
+
+module.exports = {
+  randomNumber: randomNumber
+};
+```
+
+As you can see, module.exports is just an object. This one happens to be exporting just one function, but you can export as much as you like. Now modify `HelloWorld.jsx` so it looks like this:
+
+```jsx
+const React = require("react");
+const utils = require("../logic/utils.js");
+
+const HelloWorldComponent = function() {
+  return <h1>A random number is {utils.randomNumber()}</h1>
+};
+
+module.exports = HelloWorldComponent;
+```
+
+You'll remember that with template literals (aka the backticks) we could use `${}` to signify JavaScript that will be executed and then inserted into the string. JSX uses `{}` for the same purpose. But what's going on with this function? In order to get the `randomNumber` function, we first import the module from `utils.js`, naming it utils (we could name it whatever we wanted). Then we call the `randomNumber` function. Notice that you have to use the relative path to the file, rather than its name, when you load a project file rather than something you installed with `npm install`.
+
+### Functional Components
+
+React is based around the notion of a _component_. A component is a function that returns a single JSX element (this element can have other elements as children). So our `HelloWorldComponent` function does exactly that. But React and JSX get really powerful when you start to compose React components.
+
+Let's create a new file at `app/components/clockface.jsx`. This will display the current time. Fill it out like this:
+
+```jsx
+const React = require("react");
+
+module.exports = function() {
+  return <h2>The current time is 3:21</h2>;
+}
+```
+
+Change `HelloWorld.jsx` to look like this:
+```jsx
+const React = require("react");
+const utils = require("../logic/utils.js");
+const Clockface = require("./clockface.jsx");
+
+const HelloWorldComponent = function() {
+  return <div>
+    <h1>A random number is {utils.randomNumber()}</h1>
+    <Clockface />
+  </div>;
+};
+
+module.exports = HelloWorldComponent;
+```
+
+Reload and you should see the time appear like you'd expect. Okay, that's cool, but what if the current time changes? This is where props come in. We can pass props down to React components, which they can then use to draw themselves.
+
+### React Props and State
+
+Change `clockface.jsx` to look like this:
+
+```jsx
+const React = require("react");
+
+module.exports = function(props) {
+  const hours = props.hours;
+  const minutes = props.minutes;
+  const seconds = props.minutes;
+  return <h2>The current time is {hours}:{minutes}:{seconds}</h2>;
+}
+```
+
+Now change `HelloWorld.jsx` to look like this:
+
+```jsx
+const React = require("react");
+const utils = require("../logic/utils.js");
+const Clockface = require("./clockface.jsx");
+
+const date = new Date()
+
+const HelloWorldComponent = function() {
+  
+  return <div>
+    <h1>A random number is {utils.randomNumber()}</h1>
+    <Clockface
+      hours={date.getHours()}
+      minutes={date.getMinutes()}
+      seconds={date.getSeconds()} />
+  </div>;
+};
+
+module.exports = HelloWorldComponent;
+
+```
+
+You see what's going on here? We're passing the hours and minutes down to the child component as props. When it comes time to render, the child uses the passed in props to draw itself. The parent owns the actual state. But what if we want to update those props? For that we can use state. Change HelloWorldComponent like so:
+
+```jsx
+const React = require("react");
+const utils = require("../logic/utils.js");
+const Clockface = require("./clockface.jsx");
+
+const date = new Date();
+
+const HelloWorldComponent = function() {
+  
+  const [count, setCount] = React.useState(0);
+  
+  return <div>
+    <h1>A random number is {utils.randomNumber()}</h1>
+    <h2>The button has been clicked {count} times</h2>
+    <Clockface
+      hours={date.getHours()}
+      minutes={date.getMinutes()}
+      seconds={date.getSeconds()} />
+  </div>;
+};
+
+module.exports = HelloWorldComponent;
+```
+
+Okay, this gives our "HelloWorld" component some state. That element of state is called `count` and the function for setting it is called `setCount`. When we update this state, React will re-render this component. Let's add a button to register clicks.
+
+```jsx
+const React = require("react");
+const utils = require("../logic/utils.js");
+const Clockface = require("./clockface.jsx");
+
+const date = new Date();
+
+const HelloWorldComponent = function() {
+  
+  const [count, setCount] = React.useState(0);
+  
+  return <div>
+    <h1>A random number is {utils.randomNumber()}</h1>
+    <h2>The button has been clicked {count} times</h2>
+    <button onClick={() => setCount(count + 1)}>Increment</button>
+    <Clockface
+      hours={date.getHours()}
+      minutes={date.getMinutes()}
+      seconds={date.getSeconds()} />
+  </div>;
+};
+
+module.exports = HelloWorldComponent;
+```
+
+Question: How come the random number updates every time we click the button? What could we change if we didn't want it to? How come the clock face doesn't change when we click the button?
+
+### React Effects
+
+Suppose we wanted the clock to update to reflect the time changing. How could we accomplish something like that? We might try something like setting a timer in the start of the file, and creating a new Date every second. The problem with this is, the component isn't a _thing_, it's more like instructions for creating a thing. We need instead some way to say "when you make my thing, here's something to do when you create it, before it's ready." That's where Effects come in, another kind of React hook. Modify HelloWorldComponent like so:
+
+```jsx
+const React = require("react");
+const utils = require("../logic/utils.js");
+const Clockface = require("./clockface.jsx");
+
+const HelloWorldComponent = function() {
+  
+  const [count, setCount] = React.useState(0);
+  const [date, setDate] = React.useState(new Date());
+
+  React.useEffect(() => {
+    setInterval(() => setDate(new Date()), 1000);
+  }, []);
+  
+  return <div>
+    <h1>A random number is {utils.randomNumber()}</h1>
+    <h2>The button has been clicked {count} times</h2>
+    <button onClick={() => setCount(count + 1)}>Increment</button>
+    <Clockface
+      hours={date.getHours()}
+      minutes={date.getMinutes()}
+      seconds={date.getSeconds()} />
+  </div>;
+};
+
+module.exports = HelloWorldComponent;
+```
+
+To make this absolutely the most correct, we could add also clear the interval when we're done. We can do this by returning a function from `useEffect`.
+
+```jsx
+const React = require("react");
+const utils = require("../logic/utils.js");
+const Clockface = require("./clockface.jsx");
+
+const oneTimeRandomNumber = utils.randomNumber();
+
+const HelloWorldComponent = function() {
+  
+  const [count, setCount] = React.useState(0);
+  const [date, setDate] = React.useState(new Date());
+
+  React.useEffect(() => {
+    const timerId = setInterval(() => setDate(new Date()), 1000);
+
+    return () => clearInterval(timerId);
+  }, []);
+  
+  return <div>
+    <h1>A random number is {oneTimeRandomNumber}</h1>
+    <h2>The button has been clicked {count} times</h2>
+    <button onClick={() => setCount(count + 1)}>Increment</button>
+    <Clockface
+      hours={date.getHours()}
+      minutes={date.getMinutes()}
+      seconds={date.getSeconds()} />
+  </div>;
+};
+
+module.exports = HelloWorldComponent;
+```
+
+Believe it or not, you've encountered just now the most important parts of React. There's a lot more to it, but these are the important pieces.
+
+- Pass props to an object to configure it when it renders
+- An object will re-render when its props changes
+- With useState you can give an object state that you can change
+- An object will re-render when its state changes
+- You can use `useEffect` to hook into the creation of an object, and also its unmonunting.
+
+Okay, let's get this thing off of glitch and down on our computer.
+
+### Pulling it off glitch
+
+In the bottom-left corner of the glitch project there a button that says `tools`. You can click on this, then on `Git, Import, Export`, and then on `Download project`.
+
+Having done that, you might want to move this project to your NYU directory for this class. if you run `git status` you'll see some files we probably don't care about.
+
+```sh
+rm -rf .config
+rm -rf .env
+rm -rf .node-gyp
+```
+
+We'll also need to modify the `.gitignore` file so that it doesn't include `node_modules`.
+
+```.gitignore
+public
+node_modules
+```
+
+Of course, we can also add a Procfile like we did before. This script is configured just like the other one, to run the server when we run `npm start`, so we can use the exact same procfile. Add a file:
+
+```Procfile
+web: npm start
+```
+
+One more small thing we can do, hop into the `package.json` file and change the `engines` to Node 12.x.
+
+```json
+"engines": {
+  "node": "12.x"
+},
+```
+
+Now we can commit and push to heroku.
+
+```sh
+git add .
+git commit -m "Updating with a clock"
+heroku login
+heroku git:remote -a dried-fish-server
+git push -f heroku master
+```
+
+You'll need that `-f` when you push, to override whatever you'd pushed to that Heroku endpoint before. And just like that, we've got a React app up on Heroku.
+
+### Workshop: Dog CEO
+
+There's a sick API out there called dog.ceo. Really it's cool.
+
+https://dog.ceo/dog-api/
+
+So with this, you can get random dog pictures for days. We haven't seen how to make a web request using JavaScript, but luckily in the browser there's a function called `fetch`. This belongs to the browser! It's not in Node—we can use it but only because this is a front-end application. We haven't seen asynchronous functions before either, so now let's talk about them. 
+
+An asynchronous function is a function that doesn't return right away. `fetch` is a perfect example of an asynchronous function—it has to go off and do something, and it might take awhile. In the meantime, we don't want to be waiting around, with our app stalled while it's doing it's thing. So we write something like:
+
+```js
+const response = await fetch("https://dog.ceo/api/breeds/image/random");
+```
+
+The `await` keyword is a special and very sexy new JavaScript thing that lets us resume execution when an asynchronous function finishes. All asynchronous functions must be marked with the `async` keyword. And you can only use `await` in a function that is itself async. So we could write an asynchronous function that returned the parsed JSON of a request to dog.ceo:
+
+```js
+async function fetchDogData() {
+  const response = await fetch("https://dog.ceo/api/breeds/image/random");
+  const dogData = await response.json();
+  return dogData;
+}
+```
+
+Okay! Armed with this new skill, can you add new functionality to our page? Add a button that, each time you push it, loads a new dog image into the page.
+
+## Homework
+
+See [homework 2](../../homework/02-heroku-hw.md)
 
 ### References
 - [Heroku](https://heroku.com)
 - [Glitch](https://glitch.com)
 - [Heroku Procfile with Node](https://devcenter.heroku.com/articles/nodejs-support)
+- [Dog CEO](https://dog.ceo/dog-api/)
+- [async/await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous) 
+- [React](https://reactjs.org/)
+- [React Hooks](https://reactjs.org/docs/hooks-state.html)
 
 ### Implementation Guidance & Teaching Reflection  
+I have no idea if this class actually has way to much information or not enough information.
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
