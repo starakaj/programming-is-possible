@@ -25,17 +25,17 @@ In case you need a reminder, the way tic tac toe works, two players take turns p
 
 ### Requirements
 - The game must display which player, X or O, has the current turn.
-- There must be a way to reset the game (refreshing the page doesn't count).
 - There must be an indication when one player or the other wins.
 - Use a different React component for the game container and for the squares.
 - Put it up on Heroku
 - Chose at least one of the optional requirements.
 
 ### Optional
+- There must be a way to reset the game (refreshing the page doesn't count).
 - Let the players set their names at the start of the game.
-- Set the number of rows or columns at the start of the game.
 - Color the squares differently for X and O using CSS classes.
 - Make it possible to undo a move.
+- Set the number of rows or columns at the start of the game.
 
 ### Considerations
 - The trickiest part of this assignment is handling clicks on the squares. The individual squares are dumb—they can't know anything about the state of the game. Rather, each square should have an `onClick` prop, similar to a button.
