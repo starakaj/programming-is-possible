@@ -210,7 +210,7 @@ Let's start by adding MongoDB as a dependency.
 npm install mongodb
 ```
 
-Delete `UnorderedList.jsx`, we don't need it. Now, let's change the name of `HelloWorld.jsx` to something that actually makes sense, like `DumbTwitter.jsx`. Also let's create another React component called `DumbTwitterForm.jsx`, and another one called `DumbTwitterList.jsx`. Modify `DumbTwitter.jsx` so that it loads `DumbTwitterForm.jsx` and `DumbTwitterList.jsx`.
+Now, let's change the name of `RootComponent.jsx` to something that actually makes sense, like `DumbTwitter.jsx`. Also let's create another React component called `DumbTwitterForm.jsx`, and another one called `DumbTwitterList.jsx`. Modify `DumbTwitter.jsx` so that it loads `DumbTwitterForm.jsx` and `DumbTwitterList.jsx`.
 
 ```js
 // DumbTwitter.jsx
@@ -292,16 +292,23 @@ module.exports = DumbTwitter;
 // DumbTwitterList.jsx
 const React = require('react');
 
+/* the main page for the index route of this app */
 const DumbTwitterList = function(props) {
     const tweets = props.tweets || [];
+
+    // The map function returns a new array, calling the function on each element of the array
+    const tweetComponents = tweets.map((tweet, idx) => {
+        return (
+            <li key={idx}> {/* In a list of components, each one needs a unique key, or else you'll get a warning */}
+                <strong>{tweet.user}:</strong> {tweet.message}
+            </li>
+        )
+    })
+
     return (
         <div>
             <ul>
-                {tweets.map((tweet, idx) => {
-                    return (
-                        <li key={idx}><strong>{tweet.user}:</strong> {tweet.message}</li>
-                    );
-                })}
+                {tweetComponents}
             </ul>
         </div>
     );
