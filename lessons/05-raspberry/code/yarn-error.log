@@ -1,0 +1,53 @@
+Arguments: 
+  /Users/samueltarakajian/.nvm/versions/node/v12.14.1/bin/node /usr/local/Cellar/yarn/1.21.1/libexec/bin/yarn.js run rsync
+
+PATH: 
+  /Users/samueltarakajian/.nvm/versions/node/v12.14.1/bin:/Users/samueltarakajian/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/VMware Fusion.app/Contents/Public:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  12.14.1
+
+Platform: 
+  darwin x64
+
+Trace: 
+  SyntaxError: /Users/samueltarakajian/nyu/programming-is-possible/lessons/05-raspberry/code/package.json: Unexpected string in JSON at position 332
+      at JSON.parse (<anonymous>)
+      at /usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:310:30)
+      at /usr/local/Cellar/yarn/1.21.1/libexec/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "raspberry-pi-dht-example",
+    "version": "1.0.0",
+    "description": "Example code from Programming is the Art of the Possible for running DTH22 code on a Raspberry Pi",
+    "main": "index.js",
+    "scripts": {
+      "rsync": "rsync -avz -e ssh --exclude=node_modules --delete . pi@raspi-one.local:/home/pi/pip-dht-example"
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/starakaj/programming-is-possible.git"
+    },
+    "author": "@starakaj",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/starakaj/programming-is-possible/issues"
+    },
+    "homepage": "https://github.com/starakaj/programming-is-possible#readme",
+    "dependencies": {
+      "node-dht-sensor": "^0.4.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

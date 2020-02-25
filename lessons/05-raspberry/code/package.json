@@ -1,0 +1,24 @@
+{
+  "name": "raspberry-pi-dht-example",
+  "version": "1.0.0",
+  "description": "Example code from Programming is the Art of the Possible for running DTH22 code on a Raspberry Pi",
+  "main": "index.js",
+  "scripts": {
+    "rsync": "rsync -avz -e ssh --exclude=node_modules --delete . pi@raspi-one.local:/home/pi/pip-dht-example",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starakaj/programming-is-possible.git"
+  },
+  "author": "@starakaj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/starakaj/programming-is-possible/issues"
+  },
+  "homepage": "https://github.com/starakaj/programming-is-possible#readme",
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "node-dht-sensor": "^0.4.1"
+  }
+}
