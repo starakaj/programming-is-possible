@@ -102,6 +102,8 @@ Keep in mind that there's no way to "push" data from the server down to the Rasp
     - How did it fit into the project as a whole?
     - Did you learn something new today?
     - Did you encounter an obstacle?
+- The intent is for us to be able to share these blogs internally, so that we can see how all the different strands weave together into the final project.
+- This isn't a self-assessment and your grade does not depend on the quality of your blog. However, you are still required to complete it.
 
 ## Handing it in
 - Each group should send me an email with a Github repo where the code is stored.
