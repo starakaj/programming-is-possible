@@ -166,7 +166,7 @@ Interacting with the database is a lot like interacting with a remote API. We do
 
 `Client -> Server (Our express server) -> Database Server (We don't write this) -> Actual database files`
 
-See [this file](../mongo/app.js) for the basics. As you can see, this app is able to stop and restart, while still keeping all of its data.
+See [this file](./src/mongo-basic/app.js) for the basics. As you can see, this app is able to stop and restart, while still keeping all of its data.
 
 ### Mongodb plus Heroku
 

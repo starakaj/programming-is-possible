@@ -30,8 +30,6 @@ This module is part of DM-GY 9103, _Programming is the Art of the Possible_. Thi
 ## Midterm Description
 See the full [midterm description](../../homework/midterm.md) for details.
 
-## Post Session
-
 ### References
 TBD
 

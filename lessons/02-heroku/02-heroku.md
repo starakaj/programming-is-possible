@@ -574,6 +574,9 @@ See [homework 2](../../homework/02-heroku-hw.md)
 - [async/await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous) 
 - [React](https://reactjs.org/)
 - [React Hooks](https://reactjs.org/docs/hooks-state.html)
+- [React Hooks Demistified](https://dev.to/kayis/react-hooks-demystified-2af6)
+- [React Hooks are not Magic](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
+- [React Hooks: how do they work?](https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work/)
 
 ### Implementation Guidance & Teaching Reflection  
 I have no idea if this class actually has way to much information or not enough information.
