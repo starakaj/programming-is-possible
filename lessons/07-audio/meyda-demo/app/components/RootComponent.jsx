@@ -7,6 +7,9 @@ const Meyda = require("meyda");
 const RootComponent = function() {
 
   const audioRef = React.useRef();
+  const drawingRef = React.useRef();
+
+  const [loudness, setLoudness] = React.useState([]);
 
   const audioEffect = React.useEffect(() => {
     const audioContext = new AudioContext();
@@ -20,12 +23,22 @@ const RootComponent = function() {
       bufferSize: 512,
       featureExtractors: ["loudness"],
       callback: (features) => {
-        
+        setLoudness(features.loudness)
       }
     });
 
     analyzer.start();
   }, []);
+
+  const drawingEffect = React.useEffect(() => {
+    const canvas = drawingRef.current;
+    if (canvas && loudness.specific.length) {
+      const ctx = canvas.getContext("2d");
+
+
+    }
+
+  }, [loudness]);
 
   return (
     <div>
@@ -37,6 +50,7 @@ const RootComponent = function() {
         id="audio"
         src="./Shaolin_Dub_-_12_-_Pressure.mp3"
       ></audio>
+      <canvas ref={drawingRef} className="visualizer" width="400" height="300"/>
       <ClockFace language="fr" />
     </div>
   );
