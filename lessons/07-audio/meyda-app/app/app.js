@@ -3,17 +3,31 @@ const p5 = require("p5");
 const StartAudioContext = require("startaudiocontext");
 const dat = require('dat.gui');
 
+// Open a connection to the microphone, then call a callback
+// when everything is ready. The callback will receive the
+// new web audio context, as well as the audio stream itself.
 function readAudioFromMicrophone(callback) {
+    // Call this function when the user media (the microphone)
+    // returns successfully
     const handleSuccess = function(stream) {
+        // Create a new Web Audio context
         const context = new AudioContext();
+
+        // Create a Web Audio node to wrap the microphone stream
         const source = context.createMediaStreamSource(stream);
+
+        // Execute the callback with the new context and Web Audio Node
         if (callback) callback(context, source);
     };
     
+    // Ask the user's permission, and then grab their microphone stream
     navigator.mediaDevices.getUserMedia({ audio: true, video: false })
         .then(handleSuccess);
 }
 
+// Create a web audio node to wrap the DOM audio element, then call a callback
+// when everything is ready. The callback will receive the
+// new web audio context, as well as the audio stream itself.
 function readAudioFromFile(callback) {
     // If we want to route the audio around, and do arbitrary things to it, then we
     // need to create an audio context in which to do it.
@@ -36,7 +50,7 @@ function readAudioFromFile(callback) {
 }
 
 let lastFeatures = null;
-const bufferSize = 4096;
+const bufferSize = 512;
 function setupAnalyzer(context, source) {
     // Set up Meyda
     const analyzer = Meyda.createMeydaAnalyzer({
@@ -115,7 +129,7 @@ const p5VowelConsonant = (p) => {
 
             // Draw the other half in black
             p.fill(10, 10, 10);
-            p.arc(px, py, radiusV, radiusV, p.PI, p.PI * 2);
+            p.arc(px, py, vHistory, vHistory, p.PI, p.PI * 2);
         }
     }
 }
@@ -146,11 +160,45 @@ const p5Chroma = (p) => {
     }
 }
 
+// This just draws the mel cepstral coefficients
+const p5mfcc = (p) => {
+    p.setup = () => {
+        p.createCanvas(700, 410);
+        p.background(255);
+    }
+
+    function drawBars(ray) {
+        ray.forEach((r, i) => {
+            const w = p.width / ray.length;
+            const px = w * i;
+            const h = r * p.height;
+            p.rect(px, p.height, w, -h);
+        });
+    }
+
+    p.draw = () => {
+        // Wipe the background
+        p.colorMode(p.RGB, 255);
+        p.background(255);
+
+        if (lastFeatures) {
+            let mfccScaled = lastFeatures.mfcc.slice();
+            mfccScaled = mfccScaled.map(v => {
+                return (v + 70) * 0.005; 
+            });
+
+            p.fill(220);
+            drawBars(mfccScaled);
+        }   
+    }
+}
+
 // Kick everything off
-readAudioFromFile(setupAnalyzer);
-// readAudioFromMicrophone(setupAnalyzer);
+// readAudioFromFile(setupAnalyzer);
+readAudioFromMicrophone(setupAnalyzer);
 
 // Choose which p5 example you want to see
 // let myp5 = new p5(p5Amplitude, "drawing");
 // let myp5 = new p5(p5VowelConsonant, "drawing");
 let myp5 = new p5(p5Chroma, "drawing");
+// let myp5 = new p5(p5mfcc, "drawing");
