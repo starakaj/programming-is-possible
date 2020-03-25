@@ -7,6 +7,10 @@ DM-GY 6063
 
 @starakaj
 
+## Example Implementation
+
+You'll find an example implementation of everything that we talk about today in the `meyda-app` directory. You may notice two other directories: `meyda-demo` and `tonetest`. Feel free to ignore there, as they're based on an eariler version of this lesson. Or, check them out. Up to you.
+
 ## Essential Questions
 - How do computers encode audio data?
 - What are the salient features of audio?
