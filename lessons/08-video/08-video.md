@@ -1,9 +1,9 @@
-# Audio + Video Analysis
+# Video Analysis
 
 ## Authors
 Sam Tarakajian for NYU IDM
 
-DM-GY 6063
+DM-GY 9103
 
 @starakaj
 
@@ -14,16 +14,14 @@ DM-GY 6063
 - What are some creative applications?
 
 ## Introduction
-Simply put, sound is just vibrations in the air, and light is just an electromagnetic vibration. However, human beings and other living organisms have evolved complex biomechanical systems for detecting these vibrations, and equally complex neural machinery for analyzing them. Microphones and cameras do the work of ears and eyes, recording sound and light for later reproduction. In this class, we want to do the challenging work of figuring out what is meaningful in a sound or video recording.
-
-When we talk about the meaning of a data stream, we're often talking about features, and usually grouping those features into hierarchical levels. We might talk about low level features like color or loudness, in addition to high level features like emotion or genre. We'll look at techniques for extracting low and high level features, and investigate some creative applications.
+Last week we talked about analyzing a live audio stream, using the output to direct a drawing in real time. In this class we'll look at something similar: analyzing a video to extract salient features. We'll be leaning heavily on a computer vision library called OpenCV. 
 
 ### Target Audience / Prerequisite & Pre-Assessment
-This module is part of DM-GY 6063, _Programming is the Art of the Possible_. This is a second semester creative coding course, designed for students who have a strong JavaScript foundation.
+This module is part of DM-GY 9103, _Programming is the Art of the Possible_. This is a second semester creative coding course, designed for students who have a strong JavaScript foundation.
 
 ### Outcomes & Goals
-* In this class we'll be working with audio and video recordings, as well as live audio and video streams. We'll look at how computers represent this data, and we'll explore some software libraries for analyzing that data.
-* Students will walk away with a deeper understanding of how audio and video analysis works. They'll take away some useful tools for performing that analysis, and they'll have exposure to creative techniques for working with extracted features.
+* In this class we'll be working with video recordings, as well as live video streams. We'll look at how computers represent this data, and we'll explore some software libraries for analyzing that data.
+* Students will walk away with a deeper understanding of how video analysis works. They'll take away some useful tools for performing that analysis, and they'll have exposure to creative techniques for working with extracted features.
 
 ### Pacing / Duration
 TBD
