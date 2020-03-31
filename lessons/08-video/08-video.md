@@ -27,7 +27,7 @@ This module is part of DM-GY 9103, _Programming is the Art of the Possible_. Thi
 TBD
 
 ## Materials Needed
-TBD, but certainly a laptop and a browser. Other helpful software:
+We'll be using meyda.js along with p5.js and dat.gui in this class
 - Meyda.js
 - Synopsis
 - Max/MSP
