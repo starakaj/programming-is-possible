@@ -1,5 +1,3 @@
-// Your program here
-
 const FlowCalculator = require("./flow");
 const p5 = require("p5");
 

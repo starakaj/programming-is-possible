@@ -12,6 +12,7 @@ const StartAudioContext = require("startaudiocontext");
 
 let lastMouthState = false;
 const synth = new Tone.FMSynth().toMaster();
+StartAudioContext(Tone.context);
 
 let faceapi;
 let detections;
