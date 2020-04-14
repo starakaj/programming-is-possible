@@ -1,21 +1,25 @@
 const p5 = require("p5");
-const modelURL = "model/model.json";
 const Heart = require("./heart");
 
-let width = 400;
-let height = 300;
-let p5video;
+// Model URL
+// If you make your own model, this is where you'd link to it. This is a model
+// that I trained on making "heart hands", like this
+// https://image.shutterstock.com/image-photo/woman-making-heart-her-hands-600w-1211985307.jpg
+const imageModelURL = 'https://teachablemachine.withgoogle.com/models/sltRChS8U/';
 
-let classifier;
-let label = "";
-let hearts = [];
+// Whether or not you want to flip the video horizontally. If you trained your model
+// using your webcam, then you'll want to enable this
+const flipVideo = true;
+const width = 320;
+const height = 260;
 
 const p5draw = (p) => {
 
-
-    p.preload = () => {
-        classifier = ml5.imageClassifier(modelURL, classifyVideo);
-    }
+    let p5video;
+    let offscreenGraphics;
+    let classifier;
+    let label = "";
+    let hearts = [];
 
     p.setup = () => {
         p.createCanvas(width, height);
@@ -25,13 +29,24 @@ const p5draw = (p) => {
         p5video.size(width, height);
         p5video.hide();
 
-        heart = (new Heart(100, 100, 0, 0, 0, 0));
-        heart.scale = 50;
+        // We'll use this offscreen canvas to store the video, in case we
+        // want to transform it before classifying it
+        offscreenGraphics = p.createGraphics(width, height);
+
+        classifier = ml5.imageClassifier(imageModelURL + "model.json", classifyVideo);
     }
 
     p.draw = () => {
-        p.background(100);
-        p.image(p5video, 0, 0, p.width, p.height);
+        // This draws the video with X and Y flipped
+        offscreenGraphics.push();
+        if (flipVideo) {
+            offscreenGraphics.translate(width, 0);
+            offscreenGraphics.scale(-1, 1);
+        }
+        offscreenGraphics.image(p5video, 0, 0, width, height);
+        offscreenGraphics.pop();
+
+        p.image(offscreenGraphics, 0, 0, p.width, p.height);
 
         // Draw the label
         p.fill(255);
@@ -57,35 +72,25 @@ const p5draw = (p) => {
         hearts = hearts.filter(heart => !heart.isOffscreen(p));
     }
 
+    // Get a prediction for the current video frame
     function classifyVideo() {
-        let flippedVideo = flipImage(p, p5video);
-        classifier.classify(flippedVideo, gotResult);
-        flippedVideo.remove();
+        classifier.classify(offscreenGraphics, gotResult);
     }
-
+    
     function gotResult(error, results) {
         if (error) {
             console.error(error);
             return;
         }
-    
+
+        // results is an array, sorted by confidence. Each
+        // result will look like { label: "category label" confidence: 0.453 }
+        // or something like this
         label = results[0].label;
-    
         classifyVideo();
     }
 }
 
 module.exports = function setup() {
     const myp5 = new p5(p5draw, "main");
-}
-
-function flipImage(p, img) {
-    const p5Canvas = p.createGraphics(img.width, img.height);
-    p5Canvas.push()
-    p5Canvas.translate(img.width, 0);
-    p5Canvas.scale(-1, 1);
-    p5Canvas.image(img, 0, 0, img.width, img.height);
-    p5Canvas.pop();
-
-    return p5Canvas;
 }

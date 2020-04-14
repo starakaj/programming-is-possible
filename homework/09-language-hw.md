@@ -13,7 +13,7 @@ After copying the starter, open up the file at `poem/poem.js`. Using the techniq
 ### Requirements
 When I say that the text returned by `makePoem` must be poetic, it's not entirely clear what that means. A poem is simply a creative arrangement of text, so that certainly leaves you a lot of leeway. Some things that you might try include:
 
-- Pulling blocks of text containing a common word
+- Pulling blocks of text containing a common word (look into stemming!)
 - Listing only words that have a "negative" or "positive" sentiment (you can use sentiment analysis for this)
 - Writing your own new sentences, using vocabulary drawn from the text
 - Writing lines with the same number of syllables
