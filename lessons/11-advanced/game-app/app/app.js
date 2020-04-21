@@ -1,5 +1,6 @@
 const p5 = require("p5");
 const Game = require("./game");
+const GameClient = require("./gameClient");
 
 const width = 400;
 const height = 400;
@@ -11,6 +12,8 @@ const cellHeight = height / rows;
 const sketch = (p) => {
 
     let game = new Game(columns, rows);
+    let gameClient = new GameClient();
+    game.on("playerMoved", player => console.log(player));
 
     p.setup = () => {
         p.createCanvas(400, 400);
@@ -32,6 +35,10 @@ const sketch = (p) => {
 
         // Draw the game
         game.draw(p, cellWidth, cellHeight);
+    }
+
+    p.keyPressed = () => {
+        game.handleInput(p.key);
     }
 }
 

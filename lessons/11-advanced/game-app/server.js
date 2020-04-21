@@ -4,6 +4,7 @@
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
+const WebSocket = require("ws");
 
 // Special piece for running with webpack dev server
 if (process.env.NODE_ENV === "development") {
@@ -31,3 +32,6 @@ app.get("/", function(request, response) {
 const listener = app.listen(port, function () {
   console.log('Your app is listening on port ' + port);
 });
+
+// Start a web socket server
+const wsServer = new WebSocket.Server({ server: listener });
