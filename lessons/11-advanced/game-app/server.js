@@ -5,6 +5,7 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const WebSocket = require("ws");
+const { v4: uuidv4 } = require("uuid");
 
 // Special piece for running with webpack dev server
 if (process.env.NODE_ENV === "development") {
@@ -33,5 +34,45 @@ const listener = app.listen(port, function () {
   console.log('Your app is listening on port ' + port);
 });
 
+// Space to store players, by player id
+const players = {};
+
+// Map from a connection id, to the player id that the connection owns
+const playersByConnectionId = {};
+
 // Start a web socket server
 const wsServer = new WebSocket.Server({ server: listener });
+
+function broadcastPlayers() {
+  wsServer.clients.forEach(client => {
+    client.send(
+      JSON.stringify(players)
+    );
+  });
+}
+
+// Handle new connections
+wsServer.on("connection", (ws) => {
+
+  // Generate a new UID for this websocket
+  const wsid = uuidv4();
+
+  // First, send the connection the struct containing the players
+  ws.send(JSON.stringify(players));
+
+  // Update players whenever a new move gets made
+  ws.on("message", (data) => {
+    const player = JSON.parse(data);
+    players[player.id] = player;
+    playersByConnectionId[wsid] = player.id;
+    broadcastPlayers();
+  });
+
+  // Clean up when the player disconnects
+  ws.on("close", () => {
+    const playerid = playersByConnectionId[wsid];
+    if (playerid) delete players[playerid];
+    delete playersByConnectionId[wsid];
+    broadcastPlayers();
+  });
+});

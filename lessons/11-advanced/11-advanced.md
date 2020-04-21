@@ -270,13 +270,450 @@ module.exports = class GameClient {
 }
 ```
 
-Believe it or not that's all we need to do to send the messages to the server. Back on the server end, we can log this messages to make sure it went through. However, things are a little bit precise on the server end. Take a close look at this:
+Then, back in `app.js`, we can call that function every time the `Game` emits its "playerMoved" event.
 
 ```js
+// app.js
+
+// ...
+
+const sketch = (p) => {
+
+    let game = new Game(columns, rows);
+    let gameClient = new GameClient();
+    game.on("playerMoved", (player) => gameClient.sendPlayer(player));
 ```
 
+This is a common JS pattern—you have different parts of the app all doing their thing, emitting events when they do. The `app.js` file, or some central file, is responsible for connecting these events to some kind of response. That way each part doesn't have to worry about what the others are doing. And believe it or not that's all we need to do to send the messages to the server. Back on the server end, we can log this messages to make sure it went through. However, things are a little bit precise on the server end. We'll come to that in a minute, but first some refactoring.
+
+### Other players
+
+Right now, our client side code assumes that it will be the only player in existence. But we know that we'd like to be able to draw other players as well. So, the `Game` class needs some kind of way to store a list of players as well. We could have a property like `this._otherPlayers`, but a bit cleaner might be to simply have a property `_players`, with each player associated with a particular id. How to generate this id? It's a bit overkill for this project, but there's a useful library for generating Universal Unique Identifiers—uuids—called `uuid`.
+
+```
+npm install uuid
+```
+
+Using this, let's first add to our definition of a `player` a unique identifier associated with each player. Note the `require` for `uuid` looks a little interesting—we're doing object destructuring anad renaming at the same time.
+
+```js
+// game.js
+const { EventEmitter } = require("events");
+const { clamp }  = require("./util");
+const { v4: uuidv4 } = require("uuid");
+
+// ...
+
+    // Make a new player object out of a position and a color
+    _makePlayer(px, py, color) {
+        return {
+            id: uuidv4(),
+            x: px,
+            y: py,
+            color
+        };
+    }
+```
+
+Now, what about storing all of the players? I'd suggest we keep around an object that looks something like this:
+
+```js
+this._players = {
+    playerIdA: <player A definition>,
+    playerIdB: <player B definition>,
+    playerIdC: <player C definition>,
+    // ...
+}
+```
+
+So, when we create a new `Game`, the first thing we do is add ourselves to the list of players. Something like this:
+
+```js
+// game.js
+module.exports = class Game extends EventEmitter {
+    constructor(columns, rows) {
+        super();
+        this._columns = columns;
+        this._rows = rows;
+
+        // Position the player in the center of the board
+        this._player = this._makePlayer(
+            Math.floor(this._columns / 2),
+            Math.floor(this._rows / 2),
+            this._makeRandomHue()
+        )
+
+        this._players = {
+            [this._player.id]: this._player
+        };
+    }
+```
+
+Note the square brackets around `[this._player.id]`! In this context, those brackets mean first evaluate the expression inside the brackets, then use the result as a key. Finally, we need a function to draw all the players. We can update our draw function accordingly, using `Object.values` to make an iterable out of the values (as opposed to the keys) of `this._players`.
+
+```js
+// game.js
+
+    // Draw each player as a square at the appropriate position
+    draw(p, cellWidth, cellHeight) {
+        p.push();
+        p.strokeWeight(0);
+        p.colorMode(p.HSB);
+        Object.values(this._players).forEach(player => {
+            p.fill(player.color);
+            p.rect(
+                player.x * cellWidth,
+                player.y * cellHeight,
+                cellWidth,
+                cellHeight
+            );
+        });
+        p.pop();
+    }
+```
+
+### Managing connections on the server
+
+In the land of the client, aka our web page, we only ever have to worry about one websocket connection. The server on the other hand will have to manage as many connections as there are people playing the game. Luckily, some cleverness with JavaScript closures means a lot of the bookkeeping gets taken care of for us. Take a look at this code:
+
+```js
+// server.js
+
+// Start a web socket server
+const wsServer = new WebSocket.Server({ server: listener });
+
+// Handle new connections
+wsServer.on("connection", (ws) => {
+  ws.on("message", (data) => {
+    console.log(JSON.parse(data));
+  });
+});
+```
+
+Two things are going on here at the same time. First, we're defining a function to be called whenever the WebSocket server establishes a new connection. What does that function do? It defines yet another function! This one listens for messages on the new connection. Whenever the connection emits a "message" event, which it does every time the other side of the connection calls `send`, it will call a callback function with the transmitted data. For now, we're simply printing that data out.
+
+Now, each connection is sending us a new player position whenever that player moves. What are we going to do with all those player positions? Well, someone first connects to the game, the first thing they need to get is the position of all other players. So, the server needs to have all those positions ready to send back. That means we need to store the position of all players somewhere in our server.
+
+(There is another approach, where the server doesn't actually store any information. Instead, whenever a new player connects, the server asks all connected players to re-send their current position. This is another fine solution, a bit of a hybrid, centrally-brokered peer-to-peer model. If you want to hone your skills a bit, you could try to build this yourself after class.)
+
+Okay, so all we need to do, when a player makes a move, is update the appropriate part of some `players` object. We could do something like this:
+
+```js
+// server.js
+
+// ...
+
+// Space to store players, by player id
+const players = {};
+
+// Start a web socket server
+const wsServer = new WebSocket.Server({ server: listener });
+
+// Handle new connections
+wsServer.on("connection", (ws) => {
+
+  // First, send the connection the struct containing the players
+  ws.send(JSON.stringify(players));
+
+  // Update players whenever a new move gets made
+  ws.on("message", (data) => {
+    const player = JSON.parse(data);
+    players[player.id] = player;
+  });
+});
+```
+
+### Handling updates from the server
+
+Okay, now every time a new player connects to the server, they should receive a list of all other players. Now we need to update `_players` to contain the new players. We need to emit an event when new players come in, and handle it in the game. First, let's handle emiting an event from `gameClient.js`. Of course, `GameClient` will need to extend `EventEmitter` for this to work!
+
+```js
+// gameClient.js
+const { EventEmitter } = require("events");
+
+module.exports = class GameClient extends EventEmitter {
+    constructor() {
+        super();
+        // ...
+
+        this._websocket.onmessage = (event) => {
+            const players = JSON.parse(event.data);
+            this.emit("playersUpdate", players);
+        };
+    }
+```
+
+You'll notice that the implementation of WebSocket that we use in the browser is slightly different to the one used in Node. Rather than emit events, it has the user set the value of `onopen`, `onmessage`, and `onclose` events. Also, those functions receive and `event` object containing the sent data, rather than the data itself. In any case, now we're ready to write an `updatePlayers` function for our `Game` class.
+
+```js
+// game.js
+
+module.exports = class Game extends EventEmitter {
+    // ...
+
+    updatePlayers(players) {
+        this._players = players;
+    }
+```
+
+And finally we can connect the two up in `app.js`.
+
+```js
+// app.js
+
+    game.on("playerMoved", (player) => gameClient.sendPlayer(player));
+    gameClient.on("playersUpdate", (players) => game.updatePlayers(players));
+```
+
+And now, we can restart the server, reload the page, and see the fruits of our labors!
+
+Huh. Where did our player go?
+
+### Object.assign
+
+Thinking about things for a minute, it's pretty clear what happened. Take another look at our WebSocket server code:
+
+```js
+// server.js
+
+// ...
+
+// Space to store players, by player id
+const players = {};
+
+// Start a web socket server
+const wsServer = new WebSocket.Server({ server: listener });
+
+// Handle new connections
+wsServer.on("connection", (ws) => {
+
+  // First, send the connection the struct containing the players
+  ws.send(JSON.stringify(players));
+
+  // Update players whenever a new move gets made
+  ws.on("message", (data) => {
+    const player = JSON.parse(data);
+    players[player.id] = player;
+  });
+});
+```
+
+When a new player connects, we send them an object containing all the current players. We respond by calling `updatePlayers`
+
+```js
+// game.js
+
+module.exports = class Game extends EventEmitter {
+    // ...
+
+    updatePlayers(players) {
+        this._players = players;
+    }
+```
+
+Of course, when the first player connects, the game is empty, as there are no other players. So `this._players` gets set to an empty object. There's a slick way to fix this that matches with our intuition, that we don't want to overwrite the player assigned to `this._player`, the player owned by this particular instance of the game. That slick way is to make use of `Object.assign`. This function, `Object.assign`, folds a series of objects into an existing objects. If you do something like:
+
+```js
+const A = {a: 1};
+const B = {b: 2};
+const C = {c: 3};
+
+Object.assign(A, B, C);
+
+console.log(A); // prints {a: 1, b:2, c:3}
+```
+
+You can see how each subsequent object gets folded into the first. So, we could update our `updatePlayers` function to make use of Object.assign. Rather than use the `players` argument directly, we first fold our player into it.
+
+```js
+// game.js
+
+    updatePlayers(players) {
+        const ourPlayer = {
+            [this._player.id]: this._player
+        };
+
+        // Make sure that our player stays in there, no matter what
+        this._players = Object.assign(players, ourPlayer);
+    }
+```
+
+Try reloading. You should now actually see your square, though you'll see something else too: the ghost of the previous square. In fact, every time you reload the page, the old square is still sitting there. In hindsight it's clear what's going on: the server is never cleaning up the old players when one player disconnects. Let's fix that.
+
+### Removing disconnected players
+
+The logic is simple: when a player disconnects, remove their player data from `players`. But how do we do that? When the websocket disconnects, we need some way of knowing which player that connection owns, so that we can clean up after them. We can make use once again of `uuid`, this time on the server, to generate an ID to associate with each websocket connection.
+
+```js
+// server.js
+const { v4: uuidv4 } = require("uuid"); // Remember this funny syntax 
+
+// ... 
+
+// Space to store players, by player id
+const players = {};
+
+// Map from a connection id, to the player id that the connection owns
+const playersByConnectionId = {};
+
+// ... 
+
+// Handle new connections
+wsServer.on("connection", (ws) => {
+
+  // Generate a new UID for this websocket
+  const wsid = uuidv4();
+
+  // First, send the connection the struct containing the players
+  ws.send(JSON.stringify(players));
+
+  // Update players whenever a new move gets made
+  ws.on("message", (data) => {
+    const player = JSON.parse(data);
+    players[player.id] = player;
+    playersByConnectionId[wsid] = player.id; // Store a map from websocket connection id to player id
+  });
+});
+```
+
+Now when the socket disconnects, we have a way of knowing which player belongs to which connection. So we can now write our cleanup function.
+
+```js
+// server.js
+
+// ...
+
+// Handle new connections
+wsServer.on("connection", (ws) => {
+
+  // Generate a new UID for this websocket
+  const wsid = uuidv4();
+
+  // First, send the connection the struct containing the players
+  ws.send(JSON.stringify(players));
+
+  // Update players whenever a new move gets made
+  ws.on("message", (data) => {
+    const player = JSON.parse(data);
+    players[player.id] = player;
+    playersByConnectionId[wsid] = player.id;
+  });
+
+  // Clean up when the player disconnects
+  ws.on("close", () => {
+    const playerid = playersByConnectionId[wsid];
+    if (playerid) delete players[playerid];
+    delete playersByConnectionId[wsid];
+  });
+});
+```
+
+Nice. Now restart the server. When we reload the page, we no longer see the ghosts of disconnected squares.
+
+### Tying it all together
+
+We're very, very close now, just one piece missing. We need the server to actually write to all connected clients whenever `players` changes somehow. What we can do is iterate over the connections to the WebSocket server and send a message to each one. Then we just need to call this function at the appropriate time.
+
+```js
+// server.js 
+
+function broadcastPlayers() {
+  wsServer.clients.forEach(client => {
+    client.send(
+      JSON.stringify(players)
+    );
+  });
+}
+
+// Handle new connections
+wsServer.on("connection", (ws) => {
+
+  // Generate a new UID for this websocket
+  const wsid = uuidv4();
+
+  // First, send the connection the struct containing the players
+  ws.send(JSON.stringify(players));
+
+  // Update players whenever a new move gets made
+  ws.on("message", (data) => {
+    const player = JSON.parse(data);
+    players[player.id] = player;
+    playersByConnectionId[wsid] = player.id;
+    broadcastPlayers();
+  });
+
+  // Clean up when the player disconnects
+  ws.on("close", () => {
+    const playerid = playersByConnectionId[wsid];
+    if (playerid) delete players[playerid];
+    delete playersByConnectionId[wsid];
+    broadcastPlayers();
+  });
+});
+```
+
+And now for the final test: restart the server and open up two tabs. Anything you do in one tab should be reflected in the other. Pretty cool!
+
+### One more thing I lied
+
+Actually there's one more very tiny thing we ought to address. When the webpage first opens the websocket connection, it doesn't send the initial state of the player. By adding a new event to the `gameClient` we should be able to fix that easily.
+
+```js
+// gameClient.js
+
+// ...
+
+    this._websocket.onopen = () => {
+        this.emit("connected");
+    };
+```
+
+And now we can hook this up in `app.js`.
+
+```js
+// app.js
+
+game.on("playerMoved", (player) => gameClient.sendPlayer(player));
+gameClient.on("playersUpdate", (players) => game.updatePlayers(players));
+gameClient.on("connected", () => gameClient.sendPlayer(game._player));
+```
+
+Reload and everything should work as expected. Well, it's a little gross that we're accessing a "private" member variable from outside the `Game` class. We could add an accessor function to `Game`, which would make make things a little nicer looking.
+
+```js
+// game.js
+
+// ...
+
+    // Accessor for the player that this game owns, accessed like "game.ownedPlayer"
+    get ownedPlayer() {
+        return this._player;
+    }
+```
+
+And then changing `app.js` is as simple as:
+
+```js
+// app.js
+
+game.on("playerMoved", (player) => gameClient.sendPlayer(player));
+gameClient.on("playersUpdate", (players) => game.updatePlayers(players));
+gameClient.on("connected", () => gameClient.sendPlayer(game.ownedPlayer));
+```
+
+And now your inner perfectionist can be at peace. There's nothing left to do but deploy to Heroku!
+
 ## Student Reflections, Takeaways & Next Steps
-TBD
+Concepts you might want to make sure you understand, that we talked about in this class:
+- Destructuring assignment
+- Classes & inheritance
+- Events, emitting events, listening to events
+- WebSockets
+    - That includes the difference between WebSockets in Node and in the browser
+- Object.assign
+- Object.values
+- Class accessors
+- Unique identifiers
 
 ## Post Session
 TBD

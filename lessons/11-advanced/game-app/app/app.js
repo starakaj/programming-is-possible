@@ -13,7 +13,9 @@ const sketch = (p) => {
 
     let game = new Game(columns, rows);
     let gameClient = new GameClient();
-    game.on("playerMoved", player => console.log(player));
+    game.on("playerMoved", (player) => gameClient.sendPlayer(player));
+    gameClient.on("playersUpdate", (players) => game.updatePlayers(players));
+    gameClient.on("connected", () => gameClient.sendPlayer(game.ownedPlayer));
 
     p.setup = () => {
         p.createCanvas(400, 400);
