@@ -45,6 +45,9 @@ Given the fact that everyone will be working remotely for the rest of the semest
 ## Deliverables
 This project is more than just the code. I want to understand why you chose the project that you did, and I want you to have documentation that expresses what's exciting about your project to the outside world. So the three deliverables for this project will be the code, the demo presentation, and online documentation.
 
+### Consultation
+Next week in class we'll have time to work on the final project. During that time, I'll be meeting with each group individually to talk about how the project is progressing. That's the perfect time to clear up technical hurdles, ask for advice, and to define the limits of the project to something that can be finished in the remaining week. It is not a good time to start working on your project.
+
 ### The code itself
 All the code that you write for this project should go into a public repository. All of your code can be in one repo, or you can use more than one. You can use Github, Bitbucket, or whatever else you like, so long as I can get the code and look at it. Part of your grade for this assignment will come from the quality of the code itself. I hope that doesn't sound scary-I'm not going to dock you points if your code is a little messy or if you accidentally use `let` when you should have used `const`. I'm more interested in high level organization. For example:
 
