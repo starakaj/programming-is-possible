@@ -2,12 +2,26 @@
 Class consultation: May 29 in class
 Due date: May 5, midnight
 
+## Introduction
+Oh my oh my how the last few weeks have just flown by. Here we are at the end. Take a breath, you've earned it. Now it's time for us to start working on our final project. The goal here is to challenge yourself, and to bring all of the knowledge and experience you've gained throughout this course to bear on something concrete. Think about what you'd like to say, what techniques you'd like to investigate, and how you're going to accomplish something complete in the short time you have.
+
+I hope that this course has given you a greater understanding of how to achieve larger, more ambitious projects. We've focused on two areas: breaking large projects into modular pieces that can somehow communnicate, and software libraries that make sense of the world. For the final project, I'd like you to put those skills to the test.
+
 ## Description
-We've finally made it to the last assignment of the semester, the final project. I hope that this course has given you a greater understanding of how to achieve larger, more ambitious projects. In this course we've focused on two areas: breaking large projects into modular pieces that can somehow communnicate, and software libraries that make sense of the world. For the final project, I'd like you to put those skills to the test.
+- In this final project, you will be working with a partner or a small group to build a software and/or hardware system, containing multiple interlinking parts, that connects to some of the themes we've been exploring in this class.
+- One major goal is to give you the chance to dive deeper into a particular subject or technique that interests you.
+- It's also intended that you come away with solid documentation that you can use to share the project.
+- Finally this project encourages you to work together as a team, leveraging each other's skills.
 
 For the midterm assignment, we looked at how to build a system that brought data from a remote sensor to a client interface. That's an extremely flexible model for a large range of projects. In this final assignment, the only hard technical requirement is that your project involves at least two separate systems working together, with some kind of communication system between them. That could mean a web application, written in p5 or React, that communicates with a remote server. It could be a game written in Unity that sends images to a Node server running a neural network. It could be a Max/MSP patch that communicates with an arduino. Again, the hard requirement is that there is some communication layer that can clearly separate the parts of the system.
 
 If you still have the Raspberry Pi from earlier in the semester, you're welcome to use it here!
+
+## Essential Questions
+- How does hardware and software fit into a creative project?
+- What libraries are interesting to you?
+- How much can really be accomplished in two weeks?
+- How will you work together?
 
 ## Working as a group
 Given the fact that everyone will be working remotely for the rest of the semester, I thought about letting people work alone on this project. However, I've decided to stick to the original plan of asking people to work together. For this assignment, I'm asking you to work in groups. You can work in pairs, or even in a group of seven if you really want to, though the project you take on should be one that really requires seven people working together. I really want you to think about how to work on a large project like this as part of a team. Think back to the midterm assignment. What went well? What didn't go so well? How do you think you could work more effectively as a distributed team?
