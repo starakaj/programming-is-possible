@@ -44,4 +44,4 @@ In addition, you must take on at least one of these optional requirements. If yo
 This largely a creative assignment, but creativity is not part of your grade (at least for this assigment). I'm grading this assignment entirely on completeness, so provided (1) your game works and (2) you meet all the requirements, you should be in perfect shape.
 
 ## Handing it in
-Please send me a link to a github repository where your text adventure can be found. I should be able to pull your repository, run `npm install`, and then start up a server and run your text adventure. Please don't forget to create a README.md, even if it only contains a single sentence. If there's anything special I shoudl know about running your game, please add it to the README.
+Please send me a link to a github repository where your text adventure can be found. I should be able to pull your repository, run `npm install`, and then start up a server and run your text adventure. Please don't forget to create a README.md, even if it only contains a single sentence. If there's anything special I should know about running your game, please add it to the README.

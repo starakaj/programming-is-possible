@@ -51,21 +51,45 @@ function broadcastPlayers() {
   });
 }
 
+class Game {
+  constructor(leftPlayer, rightPlayer) {
+    this._leftPlayer = leftPlayer;
+    this._rightPlayer = rightPlayer;
+  }
+}
+
+// map from WSUID -> Game
+const activeGames = {};
+
+const waitingPlayer = null;
+
 // Handle new connections
 wsServer.on("connection", (ws) => {
 
   // Generate a new UID for this websocket
   const wsid = uuidv4();
 
-  // First, send the connection the struct containing the players
-  ws.send(JSON.stringify(players));
+  if (waitingPlayer === null) {
+    waitingPlayer = wsid;
+    ws.send("staus", {message: "Waiting for another player to join"});
+  } else {
+    const game = new Game(waitingPlayer, wsid);
+    activeGames[waitingPlayer] = game;
+    activeGames[wsid] = game;
+  }
 
   // Update players whenever a new move gets made
   ws.on("message", (data) => {
-    const player = JSON.parse(data);
-    players[player.id] = player;
-    playersByConnectionId[wsid] = player.id;
-    broadcastPlayers();
+    const game = activeGames[wsid];
+    const updateObject = JSON.parse(data);
+    
+    if (updateObject.type === "move") {
+      game.setMove(wsid, updateObject.move);
+    }
+
+    if (game.leftMove !== null && game.rightMove !== null) {
+      // broadcast the new state of the game to each player
+    }
   });
 
   // Clean up when the player disconnects

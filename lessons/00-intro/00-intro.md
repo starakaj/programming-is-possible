@@ -31,7 +31,7 @@ This course is intended for students at the undergraduate or graduate level who 
 - 0:20 - Discussion, what is a protocol? An encoding? An interface? What is the Kyoto Protocol? What is the Hyper Text Transfer Protocol? What is an API? What is an API for? If you order 50 pizzas to your friends house, does that make you a hacker? What if you do it in person? What if you use the command line?
 - 0:05 - Quick break
 - 0:50 - Exercise, making ourselves into a protocol. Can we set up a protocol right here in class? Divide into two teams. Each team divides into two groups. Group A gets a prompt for something to draw. They can only communicate with Group B by showing them one of three cards. The goal is to get group B to draw the prompt as accurately as possible. Group B has one card that they can use to communicate back. You have 15 minutes to work out how you're going to do it.
-- 0:20 - Let's talk about the methods that each group came up with. What parts were an encoding? A protocol? An interface? How did you deal with the fact that you had to express omething complex using a very limited alphabet? What was the biggest strength of your particular choice. The biggest drawback? What shared assumptions did you and the drawing group had, that made things easier or harder?
+- 0:20 - Let's talk about the methods that each group came up with. What parts were an encoding? A protocol? An interface? How did you deal with the fact that you had to express something complex using a very limited alphabet? What was the biggest strength of your particular choice. The biggest drawback? What shared assumptions did you and the drawing group have, that made things easier or harder?
 - Whatever's left - Start getting set up for the next class.
 
 ## Materials Needed
@@ -47,15 +47,15 @@ This course is intended for students at the undergraduate or graduate level who 
 I don't plan to write detailed notes for most of these classes, but for this first one there's a lot to say. Hence these somewhat detailed notes. If you're teaching this class yourself, you can of course say whatever you want here, adding your own examples and subtracting as much of what I've written here as you like. For this intro to fit with the rest of the course, some key bits should remain:
 
 - Programming in this course refers to situated coding, or coding in the real world.
-- This course will strengthen your ability to write programs with ongoingness—that other people can pick up use.
+- This course will strengthen your ability to write programs with "ongoingness"—that other people can pick up use.
 - Using code could mean continuing an open source project, appreciating a work of art, or joining a team.
 
 ### Introductions
 We can start by going around and introducing each other.
 
-This course is called "Special Topics in Digital Media" which is almost definitely a way for both the school and for me to say that we don't really have a good name for what this course is about. If you look on the GitHub, you'll see this quote to open the course "Politics is the art of the possible, the attainable — the art of the next best."
+If you look on GitHub, you'll see this quote to open the course "Politics is the art of the possible, the attainable — the art of the next best." That's because this class really isn't meant to be about programming or art making in the abstract. Rather, it's about making things, about creating works of digital art and all that entails.
 
-It might help to know that I'm not really an academic or an artist, though I've been working with academics and artists for ten years now. If there's one thing that's helped me organize the material for this course, it's the idea that the best way to learn to program is to do lots of programming. I want to try to give you the best of what ten years of working as a programmer has given me, in terms of an awareness of what programming is and how to do it well. This is the first time I've taught this course, the first time I've taugh at this school, and the first time I've taught this material. I'm hoping that we can work together. I'm imagining this being a bit like a senior-developer to junior-developer type relationship. I'm sure there's lots of things you know that I don't, and hopefully over the next few weeks we'll all grow a lot together.
+I'm not really an academic or an artist, though I've been working with academics and artists for ten years now. If there's one thing that's helped me organize the material for this course, it's the idea that the best way to learn to program is to do lots of programming. I want to try to give you the best of what ten years of working as a programmer has given me, in terms of an awareness of what programming is and how to do it well. I picture our relationship being a bit like a senior-developer to junior-developer type relationship. I'm sure there's lots of things you know that I don't, and hopefully over the next few weeks we'll all grow a lot together.
 
 In the course title I've substituted the word "programming" for the word "politics," not to say that with progamming you never get anything real done. Rather I'm interested in drawing this distinction between coding as an area of study and programming as a discipline. It's a relationship that's sort of like geometry and architecture. When you project coding down into the real world, you get programming, which I think of like situated coding. My thesis for this course, which hopefully I can convince you of by the end, is that this difference between coding and programming is more than just _pure_ versus _real_ or _clean_ vs _dirty_. Programming isn't diminished or restricted by being in the world. Rather, it draws power from its entanglements. It entangles itself with programmers, customers, audiences, society, culture, and other programs.
 
@@ -76,6 +76,14 @@ When I say I want to help you build cool things, what kind of thing am I talking
 - Leafcutter John: https://www.youtube.com/watch?v=2jIlLHfSEfs — Making an instrument you play with light. How does the gesture make sense?
 - David Bowen: https://www.dwbowen.com/telepresentwater — Tele-present water. Just very cool, but also what are the parts at play?
 - Collective Of Two: https://vimeo.com/386776425 — Invisible Hand. Gathering incidental data and combining it both literally and artistically. Why does a law firm pay for something like this? Why do these guys make it?
+- eCLOUD: http://www.ecloudproject.com/ - Transparent panels that reflect the state of the weather in some place (installed SF Airport).
+- The Living, Twin Mirror: http://cheraudesir.com/the-living-twin-mirror-2017/ - Display imperfect representation of a person's face.
+- Ronin Tool: https://100r.co/site/ronin.html - In-browser, LISP based design tool.
+- The Living, Living Light: https://architizer.com/projects/living-light/ - Tree-like installations that reflect air quality.
+- Matt Roberts, Waves: https://vimeo.com/20500963 - NOAA data to low frequency waves.
+- Matt Kenyon, Spore 1.1: https://www.swamp.nu/projects/spore - A rubber tree that's tied, in multiple ways, to The Home Depot.
+
+Lots of good examples of networked art here: https://www.postscapes.com/networked-art/
 
 Looking at these examples, what kinds of techniques can you bring to your own work?
 
