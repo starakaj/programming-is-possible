@@ -1,0 +1,36 @@
+{
+  "name": "back4app-tester",
+  "version": "0.0.1",
+  "description": "A small scaffold to get you started using React with Webpack",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack && node server.js",
+    "watch": "NODE_ENV=development node server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.16.4",
+    "jsx-loader": "^0.13.2",
+    "parse": "^2.19.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "webpack": "^5.14.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "repository": {
+    "url": "https://glitch.com/edit/#!/starter-react"
+  },
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ],
+  "author": ""
+}

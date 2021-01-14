@@ -328,7 +328,7 @@ const dummyData = [
 
 // Fetch tweets from the database
 app.get("/api/tweets", (_, res) => {
-  response.json(dummyData);
+  res.json(dummyData);
 });
 ```
 
