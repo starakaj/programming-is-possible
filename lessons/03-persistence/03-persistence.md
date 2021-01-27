@@ -8,13 +8,14 @@ Sam Tarakajian for NYU
 
 ## Essential Questions
 - How can we persist data over a long period of time, even if the server restarts?
-- What is CRUD? How can we implement it?
+- What is BaaS?
+- What is CRUD?
 
 ## Introduction
 We've seen how to put a Node server on the Internet. The question is, how does that server store data? It could store data in memory, but then that goes away when the server closes. It could write files to disk, but file access is slow, especially if multiple people are trying to read/write a file at the same time.
 
 ### Target Audience / Prerequisite & Pre-Assessment
-The first three Node classes are prerequisite for this class.
+The first three classes are prerequisite for this class.
 
 ### Outcomes & Goals
 * In this workshop we will be looking at how to implement data persistance on a web server. We will store data on a server, and update that data using an API call.
@@ -34,23 +35,15 @@ This workshop is indended to last about three hours
     - nvm
     - git
     - Postman (https://www.postman.com/)
-    - mongodb
-        - See https://docs.mongodb.com/manual/administration/install-community/ for platform-specific installation instructions
-    - sign up for heroku
-    - (recommended) mongodb compass https://www.mongodb.com/download-center/compass which you can use to visualze your database
-
 
 ### Exercises To Do Before Class
-- Introduce yourself to MongoDB concepts
-    - https://docs.mongodb.com/manual/introduction/
-    - https://docs.mongodb.com/manual/core/databases-and-collections/
-    - https://docs.mongodb.com/manual/core/document/
-    - https://docs.mongodb.com/manual/crud/
+- Create an account on [Back4App](https://www.back4app.com/)
+- Introduce yourself to Back4App
+  - https://www.back4app.com/docs/get-started/welcome
 
 ### Vocabulary (example)
 * Database
 * Deploy
-* Virtual Machine
 
 ## Exercise Descriptions
 
@@ -108,7 +101,7 @@ const access = promisify(fs.access);
 
 const app = express();
 
-app.get("/", async (req, res) => {
+app.get("/", async (req, res, next) => {
 
     const datafile = path.join(__dirname, "data.json");
 
@@ -128,14 +121,12 @@ app.get("/", async (req, res) => {
 
         // Write the result back to disk
         fs.writeFileSync(datafile, JSON.stringify(data));
-        
+
         // Finally, report back the number of pageviews
         res.send(`This page has been viewed ${data.pageviews} times`);
-        
-    } catch (e) {
-        res.send("Some kind of terrible error happened");
 
-        console.dir(e);
+    } catch (e) {
+        next(e);
     }
 });
 
@@ -151,7 +142,7 @@ This is better (and also gives us a chance to talk about Promises and async/awai
 
 Now we get to talk about something fun called a database.
 
-### Mongodb
+### Databases
 
 A database does a few important things for us:
 
@@ -160,17 +151,20 @@ A database does a few important things for us:
 - It provides an API, which means the database can be hosted in a number of ways (important for working with a VM).
 - It takes care of a lot of messy details for us, like concurrency (two people touching the database at the same time) and consistency (not a problem for us, but a problem for some people).
 
-Let's start a database! See the instructions on `https://docs.mongodb.com/manual/administration/install-community/`
-
 Interacting with the database is a lot like interacting with a remote API. We don't actually deal with modifying any data files. Rather, we connect to the database server, and we handle requests by interacting with that server on the behalf of our client.
 
 `Client -> Server (Our express server) -> Database Server (We don't write this) -> Actual database files`
 
-See [this file](./src/mongo-basic/app.js) for the basics. As you can see, this app is able to stop and restart, while still keeping all of its data.
+### Starting with Back4App
 
+Back4App has a silly name, but it gives you a really streamlined way to interact with a relational database. To understand what we're doing, it might help to picture how all the different parts of our web application fit together.
+
+![image](img/webapp-diagram.png)
+
+Our server is fulfilling two roles simultaneously. First, it's serving the entire website, aka the client application. This is the page that actually loads when a person visits your website. Second, it's providing an API—and Application Programming Interface—that the website can use to fetch data from your backend database. Dynamic websites like Twitter and Facebook work the same way. When you go to twitter.com, first the webpage itself loads, and then a separate request gets the content that should actually be displayed in the page. The page doesn't connect to the database directly, but uses an interface that interacts with the database on its behalf. It's a bit like going to the bank; when you ask to make a withdrawal, the bank doesn't open its vault and trust you to take the right amount. Instead, there's an interface that does all of that on your behalf
 ### Mongodb plus Heroku
 
-Let's throw this up on Heroku. So right now we're running Mongodb locally. We could maybe figure out a way to tell Heroku to install Mongo on our virtual machine, but a better way is with something called a Heroku add-on. Log into Heroku, click on the app you want to use (we could use the same app we used last week, or create a new free one, whichever you prefer). Next, add the mLab add-on. This adds a Mongodb server that will start in parallel to our Heroku VM. 
+Let's throw this up on Heroku. So right now we're running Mongodb locally. We could maybe figure out a way to tell Heroku to install Mongo on our virtual machine, but a better way is with something called a Heroku add-on. Log into Heroku, click on the app you want to use (we could use the same app we used last week, or create a new free one, whichever you prefer). Next, add the mLab add-on. This adds a Mongodb server that will start in parallel to our Heroku VM.
 
 If you want to push your new repo up to Heroku, follow the usual steps:
 
@@ -474,11 +468,11 @@ const DumbTwitterForm = function(props) {
     return (
         <form onSubmit={handleSubmit}>
             <label>
-                User: 
+                User:
                 <input type="text"value={user} onChange={updateUser}/>
             </label>
             <label>
-                Message: 
+                Message:
                 <input type="text" value={message} onChange={updateMessage}/>
             </label>
             <input type="submit" value="Submit"/>
@@ -540,6 +534,6 @@ https://dumb-twitter.herokuapp.com/
 
 ### References
 
-### Implementation Guidance & Teaching Reflection  
+### Implementation Guidance & Teaching Reflection
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
