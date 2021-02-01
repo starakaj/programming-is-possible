@@ -14,7 +14,7 @@ One semester of JavaScript programming experience is required. Technologies that
 
 ## Info
 
-This class is DM-GY 6063. I am Sam Tarakajian. You can reach me at st2774@nyu.edu.
+This class is DM-GY 9103. I am Sam Tarakajian. You can reach me at st2774@nyu.edu.
 
 ## Office Hours
 

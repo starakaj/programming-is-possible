@@ -33,6 +33,7 @@ Here's a list of some networked art pieces you can use:
 - The Living: https://architizer.com/projects/living-light/ - Living Light
 - Matt Roberts: https://vimeo.com/20500963 - Waves
 - Matt Kenyon: https://www.swamp.nu/projects/spore - Spore 1.1
+- Lots more here https://www.postscapes.com/networked-art/
 
 ### Extra Reading
 
