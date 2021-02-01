@@ -1,30 +1,42 @@
 # Homework 00
 
 ## Due Date
+This assignment follows the first lesson, [00-intro](../lessons/00-intro/00-intro.md). There is a written portion! It must be turned in by midnight the day before class. You can turn in the assignment by sending it to me in an email attachment, or by sending me a link to a github repository.
 
-This assignment follows the first lesson, [00-intro](../lessons/00-intro/00-intro.md). It must be turned in by midnight, February 4. 
-
-## Description
-
+## Assignment
 ### Reading
-- Yegge, Steve _Stevey's Google Platforms Rant_ https://gist.github.com/chitchcock/1281611
-- Fed, Leonardo _The Single Most Important Internal Email in the History of Amazon_ https://www.sametab.com/blog/frameworks-for-remote-working
-- Pereiro, Federico _How I write backends_ https://github.com/fpereiro/backendlore
+- Aron Z. Lewis, _Inside the Digital Sensorium_, https://aaronzlewis.com/blog/2021/01/17/inside-the-digital-sensorium/
 
-Take your time with the first two, thinking about what we talked about in class. Notice how choices about how to organize people affect how software and hardware gets organized. For _each_ of these, come up with 1 Question, 1 Comment and 1 Quote. These will not be collected, but I will ask for them at the beginning of class.
+The very first thing we do in the second class will be to discuss this reading. The article isn't long, and I recommend reading it twice if you can, once after class and once again before we meet the second time. Some things that you might want to think about:
 
-The last of these three is very technical, and I don't expect you to read and understand it all. Rather, run your eyeballs over it, mull it around in your head, and linger a while longer on the diagrams. I want you to think about systems with multiple parts. Think about some of the concepts we talked about in class, like points of failure and redundancy. You don't need a QCQ for this one, just think about it.
+- Which of the eight short stories do you identify with most?
+- Do you think a website is like a physical place? How do you feel about comparing a website to a sense organ?
+- What are the parts of this article that make you feel hopeful? What parts make you uncomfortable?
+- What is Instagram? An app? A product? A company? A collection of images and videos? All of these? None of them?
 
-Please don't do all of this reading at the last minute. I mean, I can't stop you, but it won't be as interesting or as fun if you don't give yourself time to think about it.
+If you want to make sure you're prepared for discussion, a nice technique is QCQ - Quote, Comment, Question. Make sure that you write down one quote from the reading, that you have some comment on it, and that you have a question about it.
 
 ### Writing
-In addition to the reading assignment this week, there will be a brief writing assignment. Simply, pick a program that you worked with, or a software library that you've used. Answer one simple question: is it a good program? Think about the kinds of things we talked about in class. Does it work? Does the structure of the program feel natural, or does it force you to think in distracting ways. Is the program actively maintained? What about the culture around the program? Is the community of users supportive or dismissive?
+In addition to the reading assignment this week, there will be a brief writing assignment. I want you to choose a piece of networked art, and to tell me how it works. Your interpretation of networked art can be as broad as you like, but it should be a piece that has multiple, distributed, coordinated parts. Similar to the breakdown we did in class, you should be able to answer:
 
-You don't have to write much, something on the order of 500 words should be plenty. For this assignment, you can either (1) create a git repository and check the writing in as a .txt or a .md file, or you can (2) email me the assignment at st2774@nyu.edu. This is the one and only time that email will be a valid way to turn in an assignment!
+- What are the major parts of the system? What are their responsibilities?
+- How does the behavior of the system change if one of the parts is non-responsive?
+- What are the hardware and software components of each part? Can you make any specific guesses?
+- How do the parts communicate? What protocols do they use?
+
+Here's a list of some networked art pieces you can use:
+- David Bowen: https://www.dwbowen.com/telepresentwater — Tele-present water
+- Collective Of Two: https://vimeo.com/386776425 — Invisible Hand
+- eCLOUD: http://www.ecloudproject.com/
+- The Living: http://cheraudesir.com/the-living-twin-mirror-2017/ - Twin Mirror
+- Ronin Tool: https://100r.co/site/ronin.html
+- The Living: https://architizer.com/projects/living-light/ - Living Light
+- Matt Roberts: https://vimeo.com/20500963 - Waves
+- Matt Kenyon: https://www.swamp.nu/projects/spore - Spore 1.1
 
 ### Extra Reading
 
-If you're relatively unfamiliar with Node, Git, or JavaScript itself, I recommend brushing up before coming to class on Wednesday. 
+If you're relatively unfamiliar with Node, Git, or JavaScript itself, I *highly* recommend brushing up before coming to class on Wednesday.
 
 #### Git
 - http://marklodato.github.io/visual-git-guide/index-en.html
@@ -38,4 +50,4 @@ If you're relatively unfamiliar with Node, Git, or JavaScript itself, I recommen
 
 
 ## Handing it in
-Again the only part of this assignment that must be handed in is the writing assignment. Again, about 500 words should be enough. For this assignment, you can either (1) create a git repository and check the writing in as a .txt or a .md file, or you can (2) email me the assignment at st2774@nyu.edu. This is the one and only time that email will be a valid way to turn in an assignment!
+The only part of this assignment that must be handed in is the writing assignment. Again, about 500 words should be enough. For this assignment, you can either (1) create a git repository and check the writing in as a .txt or a .md file, or you can (2) email me the assignment at st2774@nyu.edu.

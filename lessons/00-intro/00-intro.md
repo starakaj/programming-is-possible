@@ -9,6 +9,7 @@ DM-GY 6063
 
 ## Essential Questions
 - What is this class all about?
+- What is networked art?
 - What is a protocol? An interface? An encoding?
 - Where do these show up in our everyday lives?
 - What does it mean to learn programming?
@@ -20,10 +21,9 @@ In this introductory class, we'll spend a little time getting to know each other
 This course is intended for students at the undergraduate or graduate level who have completed an introduction to programming. The primary programming environment used in this course is Node, so familiarity with JavaScript or a C-like programming language is a big positive. However, the course will draw on a wide skillset, so proficiency in another language or environment is helpful.
 
 ### Outcomes & Goals
-* A major goal of this course is to teach students how to manage larger software projects. We will be using Node.js, but we will learn skills that translate to any language or environment.
-* A subtheme for this course is cybernetics and management between and among human and machine entities.
-* Students will walk away with real-world skills like hosting a project on GitHub, making pull requests, organizing tickets, writing documentation, and working with a development team.
-* Students will also learn to think critically about information systems.
+1. The primary goal for this class is to learn how to make networked art. Dynamic websites with a remote backend, interactive installations and other pieces with multiple, coordinated parts all fall under the umbrella of networked art. By the end of this class, students will be able to understand how these systems work at a high and low level.
+2. Another big focus in this class is on software development as a practice. Students will learn how to work on a large project with multiple parts, how to keep their work in version control, and how to coordinate with a team.
+3. Finally, as a subtheme we'll investigate interface, protocol and encoding as they pertain to networked art. We'll ask how the interface to a piece of art affects its meaning, and how the existence of networked art and art-like artifacts shapes our society.
 
 ### Pacing / Duration
 - 0:10 - Welcome to class, introductions, how the class works
@@ -39,23 +39,19 @@ This course is intended for students at the undergraduate or graduate level who 
 - Internet connection
 
 ### Vocabulary (example)
-* Interface: 
+* Interface:
 * Protocol:
-* Encoding: 
+* Encoding:
 
 ## Class Script
-I don't plan to write detailed notes for most of these classes, but for this first one there's a lot to say. Hence these somewhat detailed notes. If you're teaching this class yourself, you can of course say whatever you want here, adding your own examples and subtracting as much of what I've written here as you like. For this intro to fit with the rest of the course, some key bits should remain:
-
-- Programming in this course refers to situated coding, or coding in the real world.
-- This course will strengthen your ability to write programs with "ongoingness"—that other people can pick up use.
-- Using code could mean continuing an open source project, appreciating a work of art, or joining a team.
+Each class will have a section like this one. If you're reading this as a student, consider these to be class notes. If you're teaching this class yourself, you can of course say whatever you want here, adding your own examples and subtracting as much of what I've written here as you like. Of course, whatever you add or remove should still fit with the course as a whole.
 
 ### Introductions
 We can start by going around and introducing each other.
 
 If you look on GitHub, you'll see this quote to open the course "Politics is the art of the possible, the attainable — the art of the next best." That's because this class really isn't meant to be about programming or art making in the abstract. Rather, it's about making things, about creating works of digital art and all that entails.
 
-I'm not really an academic or an artist, though I've been working with academics and artists for ten years now. If there's one thing that's helped me organize the material for this course, it's the idea that the best way to learn to program is to do lots of programming. I want to try to give you the best of what ten years of working as a programmer has given me, in terms of an awareness of what programming is and how to do it well. I picture our relationship being a bit like a senior-developer to junior-developer type relationship. I'm sure there's lots of things you know that I don't, and hopefully over the next few weeks we'll all grow a lot together.
+I'm not really an academic or an artist, though I've been working with academics and artists for many years now. If there's one thing that's helped me organize the material for this course, it's the idea that the best way to learn to program is to do lots of programming. I want to try to give you the best of what ten years of working as a programmer has given me, in terms of an awareness of what programming is and how to do it well. I picture our relationship being a bit like a senior-developer to junior-developer type relationship. I'm sure there's lots of things you know that I don't, and hopefully over the next few weeks we'll all grow a lot together.
 
 In the course title I've substituted the word "programming" for the word "politics," not to say that with progamming you never get anything real done. Rather I'm interested in drawing this distinction between coding as an area of study and programming as a discipline. It's a relationship that's sort of like geometry and architecture. When you project coding down into the real world, you get programming, which I think of like situated coding. My thesis for this course, which hopefully I can convince you of by the end, is that this difference between coding and programming is more than just _pure_ versus _real_ or _clean_ vs _dirty_. Programming isn't diminished or restricted by being in the world. Rather, it draws power from its entanglements. It entangles itself with programmers, customers, audiences, society, culture, and other programs.
 
@@ -115,7 +111,7 @@ float Q_rsqrt( float number )
 	x2 = number * 0.5F;
 	y  = number;
 	i  = * ( long * ) &y;                       // evil floating point bit level hacking
-	i  = 0x5f3759df - ( i >> 1 );               // what the fuck? 
+	i  = 0x5f3759df - ( i >> 1 );               // what the fuck?
 	y  = * ( float * ) &i;
 	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
 //	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
@@ -146,7 +142,7 @@ Is this a good program?
 Okay, let's keep discussing but I want to change gears a bit. Let's talk about something different. I want to talk about a few terms that get thrown around a lot: protocol, interface, encoding. What do these terms mean? Again, I want to write down the definitions.
 
 - What is social protocol? What does it mean to violate social protocol?
-- What is Hyper Text Transfer Protocol? What does it mean to violate the Hyper Text Transfer Protocol? 
+- What is Hyper Text Transfer Protocol? What does it mean to violate the Hyper Text Transfer Protocol?
 - What is the Kyoto Protocol? What does it mean to violate the Kyoto Protocol?
 
 Social - Ways of speaking to and acting around other people. But also talking over each other.
@@ -182,6 +178,24 @@ Or this:
 How does it relate to this:
 
 ![Harmonic Table](./img/harmonic_table.png)
+
+### Drawing Exercise
+
+We've done a lot of thinking about protocols, interfaces and encodings. Let's see how that thinking changes after an exercise in trying to copy a drawing with very, very little information. The basic format of the exercise goes like this:
+
+1. Split into teams of 2 or 3.
+2. In the first part of the exercise, I'm going to give you three words and a series of drawings. The task for the first part of the exercise is to come up with a way of describing similar drawings using only those three words. You can use the words more than once and in any order, but those are the only three words that you can use to communicate (about drawing anyway) in the second half of the exercise.
+3. So for example your three words might be "horse", "water" and "cable". You could up with a system where "horse" means draw a circle and repeating "water" makes the circle larger. So "horse water water water water" would mean "draw a very large circle. The drawer could say "horse" to mean "I understand you" and "cable" to mean "could you repeat that?" This might not be the best system but hopefully you get the idea.
+4. In the second part of the exercise, choose one person to be the the drawer and another person to be the describer. From this point on, if you're describing a drawing, remember to use only the three keywords that I gave you.
+5. Now the describers should all join a special mural that I will create for showing drawings. The drawers should each go into a special mural room created for each team.
+6. Now you'll have five minutes to describe and draw each drawing as they are presented.
+7. In the end we'll show each drawing. Each group will also describe their encoding system, and talk about why it worked well or why it didn't work so well. An interesting question might be if you could change something about your system, what would you change?
+
+#### Drawing exercise instructor's notes
+
+One nice thing about this exercise is that it's relatively easy to make it work even for a remote class. My approach involves Zoom breakout rooms and a handful of Mural boards, but anything that supports collaborative drawing ought to work perfectly. If everyone starts in the same Zoom call, you can split each team into a separate breakout room when the exercise starts. You'll also need `n + 1` mural rooms, where `n` is the number of groups that you have. Each drawer should have their own mural room, and you'll have one other mural room where you display all the drawings as time goes by.
+
+As for what kind of drawings to present, that's up to you. I think a mix of simple and hard drawings makes sense. It's fun to throw in something really detailed at the very end to see how students cope with something well outside of what they were expecting to draw. Do they focus on replicating some small detail, or do they go for a low resolution approximation? Having this distinction arise organically is a nice way to spark thinking about interfaces, protocols and our experiences with both.
 
 ## Post Session aka Homework
 
