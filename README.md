@@ -2,9 +2,11 @@
 
 > “Politics is the art of the possible, the attainable — the art of the next best” - Otto von Bismarck
 
-This is a second semester creative coding course, designed for students who have a strong JavaScript foundation. The central goal for this course is to help students graduate from coding as a technical skill to programming as a situated practice. Programming is writing code with other people, for a particular use, within a tangled web of humans, nature, software and hardware—this is the situation in which programming finds itself.
+This is a second semester creative coding course, designed for students who have a strong JavaScript foundation. The central goal for this course is to make students better programmers, where a programmer is not just someone who knows how to write code, but also someone who knows how to use it effectively. Programming is writing code with other people, for a particular use, within a tangled web of humans, nature, software and hardware—this course will teach students to thrive in this complex environment. That breaks down into three mian goals:
 
-A major theme in this course will be "ongoingness" in programming projects, or how to maintain a project in such a way that it's clearly expressed to its audience, well documented for new developers, and clear enough to be built on in the future. We'll see that theme expressed in three major domains: working with other programmers across large projects, incorporating diverse libraries and APIs, and considering the social impact of programming.
+1. The primary goal for this class is to learn how to make networked art. Dynamic websites with a remote backend, interactive installations and other pieces with multiple, coordinated parts all fall under the umbrella of networked art. By the end of this class, students will be able to understand how these systems work at a high and low level.
+2. Another big focus in this class is on software development as a practice. Students will learn how to work on a large project with multiple parts, how to keep their work in version control, and how to coordinate with a team.
+3. Finally, as a subtheme we'll investigate interface, protocol and encoding as they pertain to networked art. We'll ask how the interface to a piece of art affects its meaning, and how the existence of networked art and art-like artifacts shapes our society.
 
 In the first half of this course, we'll build an end-to-end system incorporating a deployed Node server, a front-end client for retrieving data from that server, and a Raspberry Pi that gathers data for the server. Different student teams will be responsible for different parts of the system, and will have to work together to smoothly integrate their individual work. In the second half of the course we'll look at different libraries and APIs, before putting all our accumulated experience together in a final project.
 
@@ -16,7 +18,7 @@ This class is DM-GY 6063. I am Sam Tarakajian. You can reach me at st2774@nyu.ed
 
 ## Office Hours
 
-Office hours will be Mondays from 3pm-5pm. You can find me in the IDM Adjunct Office (370 Jay Room 344). Let me know if you can't make it and we'll arrange something via Hangouts.
+The actual time for office hours is still TBA, but they will be remote.
 
 ## Course Work
 
@@ -30,7 +32,7 @@ Just to say that this is more of a road map, and we may (likely will) deviate fr
 We'll spend some time getting to know each other, talking about the course objectives, and the structure of the course. We'll also have discussions about topics related to programming. What is a protocol? What is an interface? What is an encoding? What happens to information as it passes along these channels? We may also do some Node review, to as a warm up.
 
 ### [Week 2 — Node + Git + Express](lessons/01-node/01-node.md)
-This will be a fairly fast-paced class, since most of the early part of the class should be review. We'll talk about how to set up a git repository, how to make commits and synchronize git with a remote. We'll write a simple node server, using express to handle routes. 
+This will be a fairly fast-paced class, since most of the early part of the class should be review. We'll talk about how to set up a git repository, how to make commits and synchronize git with a remote. We'll write a simple node server, using express to handle routes.
 
 ### [Week 3 — Heroku + React](lessons/02-heroku/02-heroku.md)
 This week we'll dip our toes into client-side programming, looking at React and at deploying a web interface using React. To get used to the mechanics of React we'll build a project on glitch.com, before using React in our own Node server for server-side rendering. Finally, we'll add a Procfile to deploy the whole thing to Heroku.
@@ -57,7 +59,7 @@ There are a ton of tools available for doing audio and video analysis. The parti
 Extracting information from written and spoken language is the challenge of natural language processing, or NLP. We'll take a survey of some technologies, and talk about how to connect these tools to other programs for visualization and further contextualization.
 
 ### [Week 11 - Machine Learning](lessons/10-learning/10-learning.md)
-Having talked a bit about knowledge representation and feature vectors during the natual language module, we'll be ready to dive into machine learning more generally. We'll talk about how to get started with tools like ml5.js and TensorFlow.js, which make it much easier to work with neural nets. 
+Having talked a bit about knowledge representation and feature vectors during the natual language module, we'll be ready to dive into machine learning more generally. We'll talk about how to get started with tools like ml5.js and TensorFlow.js, which make it much easier to work with neural nets.
 
 ### [Week 12 - Gesture Analysis](lessons/11-gestures/11-gestures.md)
 Rounding out the second half of the course, we'll talk broadly about gesture analysis. We'll use an ML tool called Wekinator to experiment with classifying and parametrizing gestures. Then, we'll see how to connect those classifications to systems for generating video and sound. Hopefully we'll get a Leap Motion or some other gesture analyzing system that we can play around with as well.
@@ -75,14 +77,14 @@ You are required to attend all class meetings and submit all weekly assignments 
 
 Grading will be based on a combination of factors:
 
-Attendance, participation in class discussion, and engagement in other students' projects (40%)
-Programming Assignments (20%)
+Attendance, participation in class discussion, and engagement in other students' projects (30%)
+Programming Assignments (30%)
 Midterm Project (20%)
 Final Project (20%)
 
 Attendance is mandatory. Please inform your teacher via email if you are going to miss a class. Two unexcused absences is cause for failing the class. (An unexcused lateness of 10 minutes or more is equivalent to 1/2 an absence.)
 
-This class will be participatory, you are expected to participate in discussions and give feedback to other students both in class and participate with their projects. This (along with attendance) is 40% of your grade. There will be weekly reading assignments. We'll be using the QCQ technique for these assignments: for each reading assignment, you must come up with a Question, a Comment and a Quote. These will not be collected, but you may be asked to share them during class discussion.
+This class will be participatory, you are expected to participate in discussions and give feedback to other students both in class and participate with their projects. This (along with attendance) is 30% of your grade. There will be weekly reading assignments.
 
 Programming assignments should be completed before the class in which they are due and uploaded to GitHub. Students are encouraged to work together and to help each other through programming assignments, but each student must submit their own work. Each programming assignment can be its own repository, or one repository can contain all the course work for this course (please reach out right away if you're unsure what this means or how to use GitHub).
 
