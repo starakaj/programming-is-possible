@@ -106,7 +106,7 @@ First, create a _Procfile_. When you deploy to Heroku, the first thing it has to
 
 ```Procfile
 # Procfile
-web: npm start
+web: node server.js
 ```
 
 We haven't talked about the "scripts" section of the `package.json` file yet, but it lets you attach a name to a particular set of instructions for Node to run. You'll see that `npm init` sets one up for us by default:
@@ -122,7 +122,7 @@ We haven't talked about the "scripts" section of the `package.json` file yet, bu
 }
 ```
 
-You can this script (which clearly won't do much) by running `npm run test`. The `start` script is special—you can run it by typing `npm run start` or `npm start`. 
+You can this script (which clearly won't do much) by running `npm run test`. The `start` script is special—you can run it by typing `npm run start` or `npm start`.
 
 Let's add a script to run our server with `npm start`. Edit package.json to look like this:
 
@@ -229,320 +229,531 @@ That's it! Go to the URL indicated to see your page on the real internet.
 
 ### React Basics
 
-Okay, now that we've made it this far, let's shift gears and talk a bit about React. Last week we were using HTML templates, with strings like `%%%TITLE%%%` that we would replace with some text, or even a bit of HTML that we wanted to use in its place. At an extremely high level, React does the same basic thing. However, it does it much more powerfully and flexibly. 
+Okay, now that we've made it this far, let's shift gears and talk a bit about React. Last week we were using HTML templates, with strings like `%%%TITLE%%%` that we would replace with some text, or even a bit of HTML that we wanted to use in its place. At an extremely high level, React does the same basic thing. However, it does it much more powerfully and flexibly.
 
 One downside to getting started with React is that it requires a bit of setup. We'll be working with a language for React called JSX that looks a bit like a blend of JavaScript and HTML. However, modern browsers can't work with JSX, so we have to _transpile_ (a porte-monteau of translate and compile) the JSX into JavaScript. To do that, we need to set up a local toolchain with developer tools called Webpack.
 
-All of that toolchain stuff can get in the way of our learning how to work with React. So before we dive into that, let's head to glitch.com. We can use their setup to try out React without needing to set up as much stuff.
+All of that toolchain stuff can get in the way of our learning how to work with React. So I've prepared a template that we can use to get started.
 
-Navigate to glitch.com, log in. The project that we'll be starting from can be found at https://glitch.com/~starter-react. Let's go through the parts of this very briefly.
+### Downloading the Template
+
+You can find the template that we're going to be using at github.com/starakaj/react-express-starter. To get started with this template, we're going to create a new github repository, using this repository as a template.
+
+Navigate to github.com/starakaj/react-express-starter. You should see a button that says "Use this template". Click the button.
+
+![Where to click to use the github repo template](./img/01-template.png)
+
+
+
+After a few seconds, GitHub will have created your new repository. This starts will all the same files as in the original template, but it's totally your repository now. Do with it what you will. To get started working with it, we need to clone the repo to our machine. If you click the "Code" button, GitHub will give you a few options for how you might want to do that.
+
+![Different ways to clone your repo](./img/02-clone-mode.png)
+
+So you've got a few different ways to get your code. You can use any that you like, the only one that you should avoid here is the "Download Zip" option. This just downloads the files in the repository without creating a local repo we can make changes to. I usually use the SSH option. If you want to set this up, see the [official GitHub documentation](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh) on the subject. If you like you can also experiment with the GitHub CLI. I've never used it but maybe it's great. For this class we can just use the HTTPS option.
+
+Copy the code under the HTTPS tab, and then switch to your terminal. Navigate to a directory where you want to put your code, and then clone the repository. (Modify the code below for your home directory and the name of your git repo.)
+
+```
+cd ~/nyu/pip2021
+git clone https://github.com/starakaj/react-express-prep.git
+cd react-express-prep
+```
+
+Great, now we're ready to get started. In future, we'll be cloning templates a lot, so this is a great workflow to get used to.
+
+### Navigating the template
+
+This template comes with a bunch of files already in it. Let's look at some of the more important ones.
 
 - _server.js_ - This should look extremely familiar, it's a server just like the one that we built last week.
-- _watch.json_ - This is a glitch.com thing, that tells the app container when to re-launch. You can ignore this.
-- _webpack.config.js_ - This describes the configuration of the Webpack bundler. For now, we can ignore this, but we'll return to it later.
+- _Procfile_ - You should recognize this too. This is the Procfile that tells Heroku how to run our application.
+- _webpack.config.js_ - This describes the configuration of the Webpack bundler. For now, we can ignore this, but we'll talk about it later.
 - _index.html_ - This page loads our bundled _.js_ code and injects it into the page. For now we can ignore this.
-- _app.jsx_ - This kicks off the whole program, and loads the "HelloWorld" component into the _div_ with the id "main".
-- _HelloWorld.jsx_ - This is the component that is the root of the entire application. Let's start here—this is where we can start to change the behavior of the app.
+- _app/app.jsx_ - This kicks off the whole program, and loads the "RootComponent" component into the _div_ with the id "main".
+- RootComponent.jsx_ - This is the component that is the root of the entire application.
 
-Start by deleting everything in _HelloWorld.jsx_ (You can open up the preview to see what this does). Replace it with something like this:
+Before we get started modifying the application, let's just run the thing and see what happens. Wait! I see you about to do `node server.js`. This is how we ran the server in the last class, but there's a different way to run Node applications when they happen to be in an NPM package. Check out _package.json_ and look for the _scripts_ section.
+
+```json
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack && node server.js",
+    "watch": "NODE_ENV=development node server.js"
+  },
+```
+
+Like we were talking about when we started to talk about React, we need to transpile and bundle our code before we actually run it. That's what happens when we run webpack. So as you can see, the _start_ script will run webpack first, and then run `node server.js`. We can do it all in one line by running `npm run start`. However, you might notice that there's another NPM script, called _watch_. This is a common pattern, where you'll have one NPM script to build a "release" version of your app, and another script that you'll run while you're developing. Since we're just trying out this repo, try running `npm run watch` and see what happens.
+
+`Error: Cannot find module 'express'`
+
+Oh, right, we need to `npm install` first. Let's do that and _then_ try running `npm run watch`. Now you'll see some output in your terminal, and if you navigate to `localhost:3000` you should see something like this:
+
+![What the very simple webpage looks like](./img/03-hello.png)
+
+### Going our own way
+
+So there's a bunch of React components already in place in this application. Those are in the template so that you have something to start from when you use this template in the future. Since we're just learning the basics of React right now, let's delete everything in the `components` directory, and delete everything in `app.jsx` (don't delete the file itself though). Now, what do we put in that file? And what is a `.jsx` file?
+
+This `app.jsx` file is the root of our React application. Its job is to load React into the web page, and to tell React to start rendering. So, let's do just that. First, we require "react" and "react-dom". The first is the React module, the second is a renderer for HTML.
+
+```jsx
+// app.jsx
+const React = require("react");
+const ReactDOM = require("react-dom");
+```
+
+To start rendering, we call `ReactDOM.render`, passing what we want to render and the component into which we want to render it. That might look a little something like this:
 
 ```jsx
 const React = require("react");
+const ReactDOM = require("react-dom");
 
-const HelloWorldComponent = function() {
-  return <h1>This is a big ol' title</h1>
-};
-
-module.exports = HelloWorldComponent;
+ReactDOM.render(
+    <h1>Hello there!</h1>,
+    document.getElementById("main")
+);
 ```
 
-What the heck is going on here? Well there's a couple of things happening that we haven't talked about yet. First, we're using this thing called module.exports.
+Let's start with the line `<h1>Hello there!</h1>`. That's a React component, even though it looks like a regular HTML component. That's by design. React is meant to look like HTML, but it transpiles to JavaScript code that can re-render itself dynamically. This is what makes React so popular as a front-end framework. If you're curious, you can run `npm run build` to see what the transpiled code looks like. The output is minified, but if you search for "Hello there!" you can find the line in question:
+
+```js
+n(4).render(
+  r.createElement("h1",null,"Hello there!"),
+  document.getElementById("main")
+);
+```
+
+Again, there's a lot of minification so it's not easy to read, but you can see that `<h1>` has been replaced by a call to `createElement`, a React function.
+
+### A New Name
+
+Similar to last class, let make a page that will give us a new random name. This time though, let's just stick with a first name. To get started, we know that to generate a random name we can use the `chance` NPM library. So let's install that.
+
+```
+npm install chance
+```
+
+Now we can modify the code to produce a new name.
+
+```jsx
+const React = require("react");
+const ReactDOM = require("react-dom");
+const Chance = require("chance");
+
+const mychance = new Chance();
+const newName = mychance.first();
+
+ReactDOM.render(
+    <h1>Hello there, {newName}</h1>,
+    document.getElementById("main")
+);
+```
+
+This should all look pretty familiar. The big new thing is probably the `{newName}`. In JSX, everything except for tag names (`h1`, `h2`, `p`, `div`, `img`, etc.) is treated as text. By putting `newName` between curly braces, we're telling JSX that we want to evaluate `newName` as JavaScript and to use the result. Now try reloading the page a few times. If you're running `npm run watch` you won't even have to restart the server.
 
 ### module.exports
 
-This is a mechanism that lets JavaScript files share functionality with each other. When you `require` another file, it's `module.exports` that defines what gets shared. We might have talked about this last week, I don't remember.
+By this point, our application root is starting to get a little bloated. In terms of lines of code, it's not very big, but you could argue that it's doing too many things. Up to this point, we've been doing everything inside of a single JavaScript file. However, generally it's a good idea to follow a code pattern called separation of concerns. Here, we try to make sure that each file concerns itself with doing just one thing. So `app.jsx` is just concerned with putting the React app into the application root. We could have a separate file that generates random names for us.
 
-Create a new file at `app/logic/utils.js`. Add to that file something like this:
+Create a new file at `app/util/namer.js`. Give it contents like this:
 
-```js
-function randomNumber() {
-  return Math.random();
+```jsx
+// namer.js
+const Chance = require("chance");
+const mychance = new Chance();
+
+module.exports.first = function() {
+    return mychance.first();
 }
 
-module.exports = {
-  randomNumber: randomNumber
-};
+module.exports.last = function() {
+    return mychance.last();
+}
+
 ```
 
-As you can see, module.exports is just an object. This one happens to be exporting just one function, but you can export as much as you like. Now modify `HelloWorld.jsx` so it looks like this:
+This is the first time we're seeing `module.exports`, which is a mechanism for including functionality from one JavaScript file in another. When we use `require`, like we do for `express`, we're making use of the `module.exports` mechanism. As you can see, `module.exports` is (by default) a JavaScript object. We can assign functions, constants, objects, or really anything we like to the properties of the `module.exports` object. Then, when other files require this file, they can retrieve the values that we've assigned to these properties. Here's what that might look like, back in our `app.jsx` file.
+
+```jsx
+// app.jsx
+const React = require("react");
+const ReactDOM = require("react-dom");
+const namer = require("./util/namer");
+
+const first = namer.first();
+const last = namer.last();
+
+ReactDOM.render(
+    <h1>Hi there, {first} {last}</h1>,
+    document.getElementById("main")
+);
+```
+
+With an understanding of module.exports under our belt, we're ready to get down to what React is all about: rendering content that can update dynamically.
+
+### React Components and useState
+
+Suppose we wanted to have a button that could give us a new random name. We could simply reload the page, but what if we liked the first name or the second name, and we just wanted to refresh one or the other. How would we accomplish something like that? To do this, we're going to have to use a React component.
+
+A React component is simply a function that returns JSX. Whenever something changes that the component depends on, React will re-render the component to reflect the changes. We'll talk about how to do that in a second, but first let's update our `app.jsx` file to use a componoent.
 
 ```jsx
 const React = require("react");
-const utils = require("../logic/utils.js");
+const ReactDOM = require("react-dom");
+const namer = require("./util/namer");
 
-const HelloWorldComponent = function() {
-  return <h1>A random number is {utils.randomNumber()}</h1>
-};
+const first = namer.first();
+const last = namer.last();
 
-module.exports = HelloWorldComponent;
+function RootComponent() {
+    return (
+        <h1>Hi there, {first} {last}</h1>
+    );
+}
+
+ReactDOM.render(
+    <RootComponent></RootComponent>,
+    document.getElementById("main")
+);
 ```
 
-You'll remember that with template literals (aka the backticks) we could use `${}` to signify JavaScript that will be executed and then inserted into the string. JSX uses `{}` for the same purpose. But what's going on with this function? In order to get the `randomNumber` function, we first import the module from `utils.js`, naming it utils (we could name it whatever we wanted). Then we call the `randomNumber` function. Notice that you have to use the relative path to the file, rather than its name, when you load a project file rather than something you installed with `npm install`.
+React comes with a lot of Components built in, things like `div`, `h1`, `img` and others. However, we're also able to define our own Components that work in exactly the same way. Here we define a Component by creating a function that returns JSX. We can then use that function name as if it were a Component, because it is.
 
-### Functional Components
+Oh, one small thing, we can change `<RootComponent></RootComponent>` to `<RootComponent />`, since our component doesn't have any child components.
 
-React is based around the notion of a _component_. A component is a function that returns a single JSX element (this element can have other elements as children). So our `HelloWorldComponent` function does exactly that. But React and JSX get really powerful when you start to compose React components.
-
-Let's create a new file at `app/components/clockface.jsx`. This will display the current time. Fill it out like this:
+Now, I said that we can tell React to re-render our component by defining dependencies. One way to do this is to hook into the component state. We can do this by calling `useState` during the definition of a React component. Take a close look at this
 
 ```jsx
 const React = require("react");
+const useState = React.useState; // Get the useState function out of the React module
+const ReactDOM = require("react-dom");
+const namer = require("./util/namer");
 
-module.exports = function() {
-  return <h2>The current time is 3:21</h2>;
+const last = namer.last();
+
+function RootComponent() {
+
+    const [first, setFirst] = useState(namer.first()); // Create a first variable, and a function setFirst
+
+    return (
+        <h1>Hi there, {first} {last}</h1>
+    );
+}
+
+ReactDOM.render(
+    <RootComponent></RootComponent>,
+    document.getElementById("main")
+);
+```
+
+There's a few things going on here that we should take step by step. First, we're pulling the `useState` function out of the React module and storing it a variable `useState`. The magic happens later in the RootComponent function, where we call `useState`. First, notice the funny syntax on the left side of the equals sign. We're taking advantage of JavaScript to do something called array destructuring. Basically, `useState` returns an array, and we're declaring two variables at the same time. The first, `first`, takes the value of the first element of the array and the second, `setFirst`, takes the value of the second element of the array. So this line is equivalent to this:
+
+```jsx
+const state = useState(namer.first());
+const first = state[0];
+const setFirst = state[1];
+```
+
+On the right side of the equation we're calling the function `useState`. This tells React that we want to create some state for our RootComponent component. React returns two things. The first is `first`, which is the value of the state as React sees it. The second is a function `setFirst`. We can use the function `setFirst` to update the state of RootComponent. Finally, we pass to `useState` an initial value for the state. In this case it's a random first name.
+
+Finally, down in the JSX portion, we use the `first` that comes back from `useState`, rather than a local variable `first`. So, all we need to do now to make the first name dynamic is to use the `setFirst` function to assign a new first name. Let's start by making a button.
+
+```jsx
+const React = require("react");
+const useState = React.useState; // Get the useState function out of the React module
+const ReactDOM = require("react-dom");
+const namer = require("./util/namer");
+
+const last = namer.last();
+
+function RootComponent() {
+
+    const [first, setFirst] = useState(namer.first()); // Create a first variable, and a function setFirst
+
+    // Instead of calling namer.first(), use the first variable
+    return (
+        <h1>Hi there, {first} {last}</h1>
+        <button>Refresh first name</button>
+    );
+}
+
+ReactDOM.render(
+    <RootComponent></RootComponent>,
+    document.getElementById("main")
+);
+```
+
+At this point if you check your JavaScript console, you'll see something like this (you might also see a red underline if you're using VSCode):
+
+![Adjacent JSX components need to be enclosed](./img/04-oopsie.png)
+
+What this is trying to say is that a Component can only return one JSX component. If we want to return multiple components, they need to be wrapped in another component. So let's wrap them in a `div`.
+
+```jsx
+const React = require("react");
+const useState = React.useState; // Get the useState function out of the React module
+const ReactDOM = require("react-dom");
+const namer = require("./util/namer");
+
+const last = namer.last();
+
+function RootComponent() {
+
+    const [first, setFirst] = useState(namer.first()); // Create a first variable, and a function setFirst
+
+    // Instead of calling namer.first(), use the first variable
+    return (
+      <div>
+        <h1>Hi there, {first} {last}</h1>
+        <button>Refresh first name</button>
+      </div>
+    );
+}
+
+ReactDOM.render(
+    <RootComponent></RootComponent>,
+    document.getElementById("main")
+);
+```
+
+Now let's make the button actually do something. Let's create a function that the button should call when it's pressed.
+
+```jsx
+const React = require("react");
+const useState = React.useState; // Get the useState function out of the React module
+const ReactDOM = require("react-dom");
+const namer = require("./util/namer");
+
+const last = namer.last();
+
+function RootComponent() {
+
+    const [first, setFirst] = useState(namer.first()); // Create a first variable, and a function setFirst
+
+    function updateFirst() {
+        const nextRandomName = namer.first();
+        setFirst(nextRandomName);
+    }
+
+    // Instead of calling namer.first(), use the first variable
+    return (
+        <div>
+            <h1>Hi there, {first} {last}</h1>
+            <button>Refresh first name</button>
+        </div>
+    );
+}
+
+ReactDOM.render(
+    <RootComponent></RootComponent>,
+    document.getElementById("main")
+);
+```
+
+As you can see, the function is calling `setFirst` with a new, random first name. This updates React's view of the component state, which will trigger a re-rendering. Now we just need to call this function from the button. We can do this by setting the `onClick` property of the `button`.
+
+```jsx
+<button onClick={updateFirst}>Refresh first name</button>
+```
+
+And we've done it! Now just try clicking that button. As an exercise, do the same thing for the last name.
+
+### React Component Props
+
+So far, we've seen how to use state with `useState` to make a dynamically rendering React component. In addition to state, React has another major mechanism for passing values down to a component, called `props`. Actually, we've seen `props` in action already: when we set the `onClick` property of the `button` component. This sets the `onClick` prop, which the button can retrieve when it's time to render.
+
+Using the same exact mechanism, let's update our greeting function to make it a bit more friendly to French visitors. Let's create a generic "Greeting" component that can render in multiple languages. First, let's move the Greeting component to its own file. Create a new file in `app/components/Greeting.jsx`
+
+```jsx
+// Greeting.jsx
+const React = require('react');
+
+module.exports = function Greeting() {
+    return <h1>Hi there, insert name here</h1>
 }
 ```
 
-Change `HelloWorld.jsx` to look like this:
+This is slightly different to the way we were using `module.exports` before. Rather than assigning `Greeting` to a property of the `module.exports` object, we're re-assigning `module.exports` to be our Functional Component. That's fine, we're allowed to do that. To use our new functional component, back in `app.jsx`, we require it in exactly the same way.
+
 ```jsx
 const React = require("react");
-const utils = require("../logic/utils.js");
-const Clockface = require("./clockface.jsx");
+const useState = React.useState; // Get the useState function out of the React module
+const ReactDOM = require("react-dom");
+const namer = require("./util/namer");
+const Greeting = require("./components/Greeting");
 
-const HelloWorldComponent = function() {
-  return <div>
-    <h1>A random number is {utils.randomNumber()}</h1>
-    <Clockface />
-  </div>;
-};
+function RootComponent() {
 
-module.exports = HelloWorldComponent;
+    const [first, setFirst] = useState(namer.first()); // Create a first variable, and a function setFirst
+    const [last, setLast] = useState(namer.last());
+
+    function updateFirst() {
+        const nextRandomName = namer.first();
+        setFirst(nextRandomName);
+    }
+
+    function updateLast() {
+        const nextRandomName = namer.last();
+        setLast(nextRandomName);
+    }
+
+    return (
+        <div>
+            <Greeting></Greeting>
+            <button onClick={updateFirst}>Refresh first name</button>
+            <button onClick={updateLast}>Refresh last name</button>
+        </div>
+    );
+}
+
+ReactDOM.render(
+    <RootComponent></RootComponent>,
+    document.getElementById("main")
+);
 ```
 
-Reload and you should see the time appear like you'd expect. Okay, that's cool, but what if the current time changes? This is where props come in. We can pass props down to React components, which they can then use to draw themselves.
+As far as which is better, re-assigning the `module.exports` object, or setting its properties, it really doesn't matter. Often, when a JavaScript file is only exporting one "thing," it's common to re-assign the object. Whichever feels simpler is probably best.
 
-### React Props and State
-
-Change `clockface.jsx` to look like this:
+Now, it seems like we've gone a step backwards, since our greeting isn't using the first and last names anymore. How do we pass these down to the Greeting component? It's simple: we use props. All we have to do is assign the `first` and `last` props, in exactly the way you'd probably expect.
 
 ```jsx
+// app.jsx
 const React = require("react");
+const useState = React.useState; // Get the useState function out of the React module
+const ReactDOM = require("react-dom");
+const namer = require("./util/namer");
+const Greeting = require("./components/Greeting");
 
-module.exports = function(props) {
-  const hours = props.hours;
-  const minutes = props.minutes;
-  const seconds = props.minutes;
-  return <h2>The current time is {hours}:{minutes}:{seconds}</h2>;
+function RootComponent() {
+
+    const [first, setFirst] = useState(namer.first()); // Create a first variable, and a function setFirst
+    const [last, setLast] = useState(namer.last());
+
+    function updateFirst() {
+        const nextRandomName = namer.first();
+        setFirst(nextRandomName);
+    }
+
+    function updateLast() {
+        const nextRandomName = namer.last();
+        setLast(nextRandomName);
+    }
+
+    return (
+        <div>
+            <Greeting first={first} last={last}></Greeting>
+            <button onClick={updateFirst}>Refresh first name</button>
+            <button onClick={updateLast}>Refresh last name</button>
+        </div>
+    );
+}
+
+ReactDOM.render(
+    <RootComponent></RootComponent>,
+    document.getElementById("main")
+);
+```
+
+But it's still not updating? That's because we're not actually using the props in our Greeting. We should update that now.
+
+```jsx
+const React = require('react');
+
+module.exports = function Greeting(props) {
+    return <h1>Hi there, {props.first} {props.last}</h1>
 }
 ```
 
-Now change `HelloWorld.jsx` to look like this:
+And now, the Greeting component is using our props. Nice! Okay, so to tie it all together, let's add a button to switch between English and French. We should have all the tools we need to do it, so it's just a question of applying what we've already learned. If you want to challenge yourself, try to take it from here.
+
+First, let's create a little more state in our RootComponent to store the language.
 
 ```jsx
-const React = require("react");
-const utils = require("../logic/utils.js");
-const Clockface = require("./clockface.jsx");
+// app.jsx
+function RootComponent() {
 
-const date = new Date()
-
-const HelloWorldComponent = function() {
-  
-  return <div>
-    <h1>A random number is {utils.randomNumber()}</h1>
-    <Clockface
-      hours={date.getHours()}
-      minutes={date.getMinutes()}
-      seconds={date.getSeconds()} />
-  </div>;
-};
-
-module.exports = HelloWorldComponent;
-
+    const [first, setFirst] = useState(namer.first()); // Create a first variable, and a function setFirst
+    const [last, setLast] = useState(namer.last());
+    const [lang, setLang] = useState("en");
 ```
 
-You see what's going on here? We're passing the hours and minutes down to the child component as props. When it comes time to render, the child uses the passed in props to draw itself. The parent owns the actual state. But what if we want to update those props? For that we can use state. Change HelloWorldComponent like so:
+And a function to switch the language
 
 ```jsx
-const React = require("react");
-const utils = require("../logic/utils.js");
-const Clockface = require("./clockface.jsx");
+// app.jsx
+    const [lang, setLang] = useState("en");
 
-const date = new Date();
-
-const HelloWorldComponent = function() {
-  
-  const [count, setCount] = React.useState(0);
-  
-  return <div>
-    <h1>A random number is {utils.randomNumber()}</h1>
-    <h2>The button has been clicked {count} times</h2>
-    <Clockface
-      hours={date.getHours()}
-      minutes={date.getMinutes()}
-      seconds={date.getSeconds()} />
-  </div>;
-};
-
-module.exports = HelloWorldComponent;
+    function switchLang() {
+        if (lang === "en") {
+            setLang("fr");
+        } else {
+            setLang("en");
+        }
+    }
 ```
 
-Okay, this gives our "HelloWorld" component some state. That element of state is called `count` and the function for setting it is called `setCount`. When we update this state, React will re-render this component. Let's add a button to register clicks.
+And a button to trigger the switch. To make things a bit cleaner, we can construct the button component outside of what we actually return.
 
 ```jsx
-const React = require("react");
-const utils = require("../logic/utils.js");
-const Clockface = require("./clockface.jsx");
+// app.jsx
+    let langButton;
+    if (lang === "en") {
+        langButton = <button onClick={switchLang}>Switch to French</button>;
+    } else {
+        langButton = <button onClick={switchLang}>Switch to English</button>;
+    }
 
-const date = new Date();
-
-const HelloWorldComponent = function() {
-  
-  const [count, setCount] = React.useState(0);
-  
-  return <div>
-    <h1>A random number is {utils.randomNumber()}</h1>
-    <h2>The button has been clicked {count} times</h2>
-    <button onClick={() => setCount(count + 1)}>Increment</button>
-    <Clockface
-      hours={date.getHours()}
-      minutes={date.getMinutes()}
-      seconds={date.getSeconds()} />
-  </div>;
-};
-
-module.exports = HelloWorldComponent;
+    return (
+        <div>
+            <Greeting first={first} last={last}></Greeting>
+            <button onClick={updateFirst}>Refresh first name</button>
+            <button onClick={updateLast}>Refresh last name</button>
+            {langButton}
+        </div>
+    );
 ```
 
-Question: How come the random number updates every time we click the button? What could we change if we didn't want it to? How come the clock face doesn't change when we click the button?
-
-### React Effects
-
-Suppose we wanted the clock to update to reflect the time changing. How could we accomplish something like that? We might try something like setting a timer in the start of the file, and creating a new Date every second. The problem with this is, the component isn't a _thing_, it's more like instructions for creating a thing. We need instead some way to say "when you make my thing, here's something to do when you create it, before it's ready." That's where Effects come in, another kind of React hook. Modify HelloWorldComponent like so:
+Now, we need to add the `prop` to our greeting
 
 ```jsx
-const React = require("react");
-const utils = require("../logic/utils.js");
-const Clockface = require("./clockface.jsx");
-
-const HelloWorldComponent = function() {
-  
-  const [count, setCount] = React.useState(0);
-  const [date, setDate] = React.useState(new Date());
-
-  React.useEffect(() => {
-    setInterval(() => setDate(new Date()), 1000);
-  }, []);
-  
-  return <div>
-    <h1>A random number is {utils.randomNumber()}</h1>
-    <h2>The button has been clicked {count} times</h2>
-    <button onClick={() => setCount(count + 1)}>Increment</button>
-    <Clockface
-      hours={date.getHours()}
-      minutes={date.getMinutes()}
-      seconds={date.getSeconds()} />
-  </div>;
-};
-
-module.exports = HelloWorldComponent;
+// app.jsx
+    return (
+        <div>
+            <Greeting first={first} last={last} lang={lang}></Greeting>
+            <button onClick={updateFirst}>Refresh first name</button>
+            <button onClick={updateLast}>Refresh last name</button>
+            {langButton}
+        </div>
+    );
 ```
 
-To make this absolutely the most correct, we could add also clear the interval when we're done. We can do this by returning a function from `useEffect`.
+And finally, change our Greeting component depending on the language.
 
 ```jsx
-const React = require("react");
-const utils = require("../logic/utils.js");
-const Clockface = require("./clockface.jsx");
+// Greeting.jsx
+const React = require('react');
 
-const oneTimeRandomNumber = utils.randomNumber();
-
-const HelloWorldComponent = function() {
-  
-  const [count, setCount] = React.useState(0);
-  const [date, setDate] = React.useState(new Date());
-
-  React.useEffect(() => {
-    const timerId = setInterval(() => setDate(new Date()), 1000);
-
-    return () => clearInterval(timerId);
-  }, []);
-  
-  return <div>
-    <h1>A random number is {oneTimeRandomNumber}</h1>
-    <h2>The button has been clicked {count} times</h2>
-    <button onClick={() => setCount(count + 1)}>Increment</button>
-    <Clockface
-      hours={date.getHours()}
-      minutes={date.getMinutes()}
-      seconds={date.getSeconds()} />
-  </div>;
-};
-
-module.exports = HelloWorldComponent;
+module.exports = function Greeting(props) {
+    if (props.lang === "en") {
+        return <h1>Hi there, {props.first} {props.last}</h1>;
+    } else {
+        return <h1>Bonjour, {props.first} {props.last}</h1>;
+    }
+}
 ```
-
 Believe it or not, you've encountered just now the most important parts of React. There's a lot more to it, but these are the important pieces.
 
 - Pass props to an object to configure it when it renders
 - An object will re-render when its props changes
 - With useState you can give an object state that you can change
 - An object will re-render when its state changes
-- You can use `useEffect` to hook into the creation of an object, and also its unmonunting.
-
-Okay, let's get this thing off of glitch and down on our computer.
-
-### Pulling it off glitch
-
-In the bottom-left corner of the glitch project there a button that says `tools`. You can click on this, then on `Git, Import, Export`, and then on `Download project`.
-
-Having done that, you might want to move this project to your NYU directory for this class. if you run `git status` you'll see some files we probably don't care about.
-
-```sh
-rm -rf .config
-rm -rf .env
-rm -rf .node-gyp
-```
-
-We'll also need to modify the `.gitignore` file so that it doesn't include `node_modules`.
-
-```.gitignore
-public
-node_modules
-```
-
-Of course, we can also add a Procfile like we did before. This script is configured just like the other one, to run the server when we run `npm start`, so we can use the exact same procfile. Add a file:
-
-```Procfile
-web: npm start
-```
-
-One more small thing we can do, hop into the `package.json` file and change the `engines` to Node 12.x.
-
-```json
-"engines": {
-  "node": "12.x"
-},
-```
-
-Now we can commit and push to heroku.
-
-```sh
-git add .
-git commit -m "Updating with a clock"
-heroku login
-heroku git:remote -a dried-fish-server
-git push -f heroku master
-```
-
-You'll need that `-f` when you push, to override whatever you'd pushed to that Heroku endpoint before. And just like that, we've got a React app up on Heroku.
-
-### Workshop: Dog CEO
+### Bonus Workshop: Dog CEO
 
 There's a sick API out there called dog.ceo. Really it's cool.
 
 https://dog.ceo/dog-api/
 
-So with this, you can get random dog pictures for days. We haven't seen how to make a web request using JavaScript, but luckily in the browser there's a function called `fetch`. This belongs to the browser! It's not in Node—we can use it but only because this is a front-end application. We haven't seen asynchronous functions before either, so now let's talk about them. 
+So with this, you can get random dog pictures for days. We haven't seen how to make a web request using JavaScript, but luckily in the browser there's a function called `fetch`. This belongs to the browser! It's not in Node—we can use it but only because this is a front-end application. We haven't seen asynchronous functions before either, so now let's talk about them.
 
 An asynchronous function is a function that doesn't return right away. `fetch` is a perfect example of an asynchronous function—it has to go off and do something, and it might take awhile. In the meantime, we don't want to be waiting around, with our app stalled while it's doing it's thing. So we write something like:
 
@@ -571,14 +782,14 @@ See [homework 2](../../homework/02-heroku-hw.md)
 - [Glitch](https://glitch.com)
 - [Heroku Procfile with Node](https://devcenter.heroku.com/articles/nodejs-support)
 - [Dog CEO](https://dog.ceo/dog-api/)
-- [async/await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous) 
+- [async/await](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous)
 - [React](https://reactjs.org/)
 - [React Hooks](https://reactjs.org/docs/hooks-state.html)
 - [React Hooks Demistified](https://dev.to/kayis/react-hooks-demystified-2af6)
 - [React Hooks are not Magic](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 - [React Hooks: how do they work?](https://www.netlify.com/blog/2019/03/11/deep-dive-how-do-react-hooks-really-work/)
 
-### Implementation Guidance & Teaching Reflection  
+### Implementation Guidance & Teaching Reflection
 I have no idea if this class actually has way to much information or not enough information.
 
 ***With thanks and acknowledgement, this is based on the template provided by [Eyebeam](https://github.com/eyebeam/curriculum/blob/master/TEMPLATE.md)***
