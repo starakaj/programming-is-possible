@@ -2,7 +2,7 @@
 
 ## Due Date
 
-This assignment follows the second lesson, [01-node](../lessons/01-node/01-node.md). It must be turned in by midnight, February 11. 
+This assignment follows the second lesson, [01-node](../lessons/01-node/01-node.md).
 
 ## Reading
 
