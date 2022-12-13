@@ -9,7 +9,7 @@
   "author": "Sam Tarakajian",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongodb": "^3.4.1"
   },
   "engines": {
